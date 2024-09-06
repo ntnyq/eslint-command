@@ -1,0 +1,19 @@
+{
+  "prettier.enable": true,
+  "eslint.enable": true,
+  "editor.formatOnSave": true,
+  "eslint.validate": [
+    "vue",
+    "html",
+    "json",
+    "toml",
+    "jsonc",
+    "json5",
+    "markdown",
+    "javascript",
+    "typescript",
+    "javascriptreact",
+    "typescriptreact"
+  ],
+  "cSpell.words": ["bumpp", "changelogithub", "forof", "hreg", "npmrc", "ofetch", "pnpm", "tsup"]
+}
