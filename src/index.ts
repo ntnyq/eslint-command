@@ -1,7 +1,7 @@
 import { defineExtension } from 'reactive-vscode'
 import { version } from '../package.json'
-import { logger } from './utils'
 import { useAnnotations } from './annotations'
+import { logger } from './utils'
 
 const { activate, deactivate } = defineExtension(async () => {
   logger.info(`✅ Activated, v${version}`)

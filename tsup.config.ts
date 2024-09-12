@@ -7,10 +7,11 @@ export default defineConfig({
   shims: false,
   dts: false,
   clean: true,
-  // minify: true,
+  minify: process.env.NODE_ENV === 'production',
   sourcemap: process.env.NODE_ENV === 'development',
   env: {
     NODE_ENV: process.env.NODE_ENV || 'production',
   },
   external: ['vscode'],
+  noExternal: ['reactive-vscode'],
 })

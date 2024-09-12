@@ -8,8 +8,8 @@ import {
 } from 'reactive-vscode'
 import { DecorationRangeBehavior, Range, window } from 'vscode'
 import { builtInCommands } from './constants'
-import { logger } from './utils'
 import { getCommandMarkdown } from './markdown'
+import { logger } from './utils'
 import type { DecorationMatch } from './types'
 
 export function useAnnotations() {
