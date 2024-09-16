@@ -14,3 +14,9 @@ vsc-extension-quickstart.md
 **/.eslintrc
 **/*.ts
 src/**
+
+.husky/**
+playground/**
+.node-version
+eslint.config.*
+pnpm-lock.yaml
