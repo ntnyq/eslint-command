@@ -1,10 +1,10 @@
 import { useLogger } from 'reactive-vscode'
-import * as Meta from './meta'
+import { displayName } from './meta'
 
 /**
  * Logger
  */
-export const logger = useLogger(Meta.displayName)
+export const logger = useLogger(displayName)
 
 /**
  * Escape RegExp

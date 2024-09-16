@@ -3,7 +3,7 @@
 
 // Meta info
 export const publisher = "ntnyq"
-export const name = "vscode-eslint-command"
+export const name = "eslint-command"
 export const version = "0.0.0"
 export const displayName = "ESLint Command"
 export const description = "VSCode support for eslint-plugin-command"
@@ -15,7 +15,7 @@ export const extensionId = `${publisher}.${name}`
 export type CommandKey = never
 
 /**
- * Commands map registed by `ntnyq.vscode-eslint-command`
+ * Commands map registed by `ntnyq.eslint-command`
  */
 export const commands = {
 } satisfies Record<string, CommandKey>
@@ -24,14 +24,17 @@ export const commands = {
  * Type union of all configs
  */
 export type ConfigKey = 
-  | "vscode-eslint-command.enable"
+  | "eslint-command.enable"
+  | "eslint-command.languages"
 
 export interface ConfigKeyTypeMap {
-  "vscode-eslint-command.enable": boolean,
+  "eslint-command.enable": boolean,
+  "eslint-command.languages": string[],
 }
 
 export interface ConfigShorthandMap {
-  enable: "vscode-eslint-command.enable",
+  enable: "eslint-command.enable",
+  languages: "eslint-command.languages",
 }
 
 export interface ConfigItem<T extends keyof ConfigKeyTypeMap> {
@@ -41,29 +44,41 @@ export interface ConfigItem<T extends keyof ConfigKeyTypeMap> {
 
 
 /**
- * Configs map registed by `ntnyq.vscode-eslint-command`
+ * Configs map registed by `ntnyq.eslint-command`
  */
 export const configs = {
   /**
    * Enable extension
-   * @key `vscode-eslint-command.enable`
+   * @key `eslint-command.enable`
    * @default `true`
    * @type `boolean`
    */
   enable: {
-    key: "vscode-eslint-command.enable",
+    key: "eslint-command.enable",
     default: true,
-  } as ConfigItem<"vscode-eslint-command.enable">,
+  } as ConfigItem<"eslint-command.enable">,
+  /**
+   * Languages to enable command decorations
+   * @key `eslint-command.languages`
+   * @default `["javascript","javascriptreact","typescript","typescriptreact"]`
+   * @type `array`
+   */
+  languages: {
+    key: "eslint-command.languages",
+    default: ["javascript","javascriptreact","typescript","typescriptreact"],
+  } as ConfigItem<"eslint-command.languages">,
 }
 
 export interface ScopedConfigKeyTypeMap {
   "enable": boolean,
+  "languages": string[],
 }
 
 export const scopedConfigs = {
-  scope: "vscode-eslint-command",
+  scope: "eslint-command",
   defaults: {
     "enable": true,
+    "languages": ["javascript","javascriptreact","typescript","typescriptreact"],
   } satisfies ScopedConfigKeyTypeMap,
 }
 

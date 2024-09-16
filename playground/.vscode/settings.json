@@ -1,1 +1,4 @@
-{}
+{
+  "eslint-command.enable": true,
+  "eslint-command.languages": ["javascript", "javascriptreact", "typescript"]
+}

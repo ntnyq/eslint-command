@@ -7,6 +7,7 @@ import {
   watchEffect,
 } from 'reactive-vscode'
 import { DecorationRangeBehavior, Range, window } from 'vscode'
+import { config } from './config'
 import { builtInCommands } from './constants'
 import { getCommandMarkdown } from './markdown'
 import { logger } from './utils'
@@ -15,9 +16,7 @@ import type { DecorationMatch } from './types'
 export function useAnnotations() {
   const BuiltInDecoration = window.createTextEditorDecorationType({
     rangeBehavior: DecorationRangeBehavior.ClosedClosed,
-    color: '#fff',
-    backgroundColor: 'rgba(255, 189, 42, 0.9)',
-    overviewRulerColor: 'rgba(255, 189, 42, 0.8)',
+    color: 'rgb(255, 189, 42)',
   })
   const editor = useActiveTextEditor()
   const text = useDocumentText(() => editor.value?.document)
@@ -29,14 +28,12 @@ export function useAnnotations() {
 
   // Calculate decorations
   watchEffect(() => {
-    if (!editor.value || !languageId.value) {
+    if (!editor.value || !languageId.value || !config.enable) {
       decorations.value = []
       return
     }
 
-    if (
-      !['javascript', 'typescript', 'javascriptreact', 'typescriptreact'].includes(languageId.value)
-    ) {
+    if (!config.languages.includes(languageId.value)) {
       decorations.value = []
       logger.warn(`❗️ Language ${languageId.value} is not supported`)
       return
@@ -66,7 +63,6 @@ export function useAnnotations() {
       const item: DecorationMatch = {
         command,
         range,
-        // renderOptions: {},
         hoverMessage: getCommandMarkdown(command),
       }
 

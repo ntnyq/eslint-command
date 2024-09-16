@@ -1,9 +1,10 @@
 import { computed, defineConfigObject, useIsDarkTheme } from 'reactive-vscode'
-import * as Meta from './meta'
+import { scopedConfigs } from './meta'
+import type { ScopedConfigKeyTypeMap } from './meta'
 
-export const config = defineConfigObject<Meta.ScopedConfigKeyTypeMap>(
-  Meta.scopedConfigs.scope,
-  Meta.scopedConfigs.defaults,
+export const config = defineConfigObject<ScopedConfigKeyTypeMap>(
+  scopedConfigs.scope,
+  scopedConfigs.defaults,
 )
 
 const isDark = useIsDarkTheme()
