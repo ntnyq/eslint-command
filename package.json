@@ -34,12 +34,12 @@
     "vscode:prepublish": "pnpm run build"
   },
   "dependencies": {
-    "reactive-vscode": "^0.2.6"
+    "reactive-vscode": "^0.2.7"
   },
   "devDependencies": {
     "@ntnyq/eslint-config": "^3.2.0",
     "@ntnyq/prettier-config": "^1.21.3",
-    "@types/node": "^22.8.7",
+    "@types/node": "^22.9.0",
     "@types/vscode": "^1.95.0",
     "@vscode/vsce": "^3.2.1",
     "bumpp": "^9.8.1",
@@ -92,7 +92,7 @@
     "url": "https://github.com/ntnyq/eslint-command/issues/new"
   },
   "engines": {
-    "vscode": "^1.95.1"
+    "vscode": "^1.95.2"
   },
   "prettier": "@ntnyq/prettier-config",
   "nano-staged": {
