@@ -4,7 +4,7 @@
 // Meta info
 export const publisher = "ntnyq"
 export const name = "eslint-command"
-export const version = "0.0.0"
+export const version = "0.0.1"
 export const displayName = "ESLint Command"
 export const description = "VSCode support for eslint-plugin-command"
 export const extensionId = `${publisher}.${name}`
@@ -44,7 +44,7 @@ export interface ConfigItem<T extends keyof ConfigKeyTypeMap> {
 
 
 /**
- * Configs map registed by `ntnyq.eslint-command`
+ * Configs map registered by `ntnyq.eslint-command`
  */
 export const configs = {
   /**
@@ -80,5 +80,17 @@ export const scopedConfigs = {
     "enable": true,
     "languages": ["javascript","javascriptreact","typescript","typescriptreact"],
   } satisfies ScopedConfigKeyTypeMap,
+}
+
+export interface NestedConfigs {
+  "eslint-command": {
+    "enable": boolean,
+    "languages": string[],
+  },
+}
+
+export interface NestedScopedConfigs {
+  "enable": boolean,
+  "languages": string[],
 }
 

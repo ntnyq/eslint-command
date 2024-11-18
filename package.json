@@ -6,9 +6,11 @@
   "type": "commonjs",
   "version": "0.0.1",
   "private": true,
-  "packageManager": "pnpm@9.13.2",
+  "packageManager": "pnpm@9.14.2",
   "description": "VSCode support for eslint-plugin-command",
-  "keywords": [],
+  "keywords": [
+    "eslint-command"
+  ],
   "license": "MIT",
   "author": {
     "name": "ntnyq",
@@ -19,12 +21,15 @@
     "type": "github",
     "url": "https://github.com/ntnyq/eslint-command.git"
   },
+  "bugs": {
+    "url": "https://github.com/ntnyq/eslint-command/issues/new"
+  },
   "main": "./dist/index.js",
   "icon": "./res/logo.png",
   "scripts": {
     "build": "tsup",
     "dev": "NODE_ENV=development tsup --watch",
-    "generate:type": "vscode-ext-gen --output src/meta.ts",
+    "generate:ext": "vscode-ext-gen --output src/meta.ts",
     "lint": "eslint .",
     "pack": "vsce package --no-dependencies",
     "prepare": "husky",
@@ -37,16 +42,16 @@
     "reactive-vscode": "^0.2.8"
   },
   "devDependencies": {
-    "@ntnyq/eslint-config": "^3.2.2",
-    "@ntnyq/prettier-config": "^1.21.3",
-    "@types/node": "^22.9.0",
+    "@ntnyq/eslint-config": "^3.3.0",
+    "@ntnyq/prettier-config": "^1.22.0",
+    "@types/node": "^22.9.1",
     "@types/vscode": "^1.95.0",
     "@vscode/vsce": "^3.2.1",
     "bumpp": "^9.8.1",
     "eslint": "^9.15.0",
-    "husky": "^9.1.6",
+    "husky": "^9.1.7",
     "nano-staged": "^0.8.0",
-    "pnpm": "^9.13.2",
+    "pnpm": "^9.14.2",
     "prettier": "3.3.3",
     "tsup": "^8.3.5",
     "tsx": "^4.19.2",
@@ -88,11 +93,8 @@
   "categories": [
     "Other"
   ],
-  "bugs": {
-    "url": "https://github.com/ntnyq/eslint-command/issues/new"
-  },
   "engines": {
-    "vscode": "^1.95.3"
+    "vscode": "^1.95.0"
   },
   "prettier": "@ntnyq/prettier-config",
   "nano-staged": {
