@@ -6,7 +6,7 @@
   "type": "commonjs",
   "version": "0.0.1",
   "private": true,
-  "packageManager": "pnpm@9.14.2",
+  "packageManager": "pnpm@9.15.0",
   "description": "VSCode support for eslint-plugin-command",
   "keywords": [
     "eslint-command"
@@ -26,32 +26,41 @@
   },
   "main": "./dist/index.js",
   "icon": "./res/logo.png",
+  "files": [
+    "LICENSE",
+    "dist/*",
+    "res/*"
+  ],
   "scripts": {
     "build": "tsup",
     "dev": "NODE_ENV=development tsup --watch",
-    "generate:ext": "vscode-ext-gen --output src/meta.ts",
+    "generate:meta": "vscode-ext-gen --output src/meta.ts",
     "lint": "eslint .",
     "pack": "vsce package --no-dependencies",
     "prepare": "husky",
     "publish": "vsce publish --no-dependencies",
-    "release": "bumpp && pnpm run publish",
+    "release": "run-s release:check release:version release:publish",
+    "release:build": "run-s generate:meta build",
+    "release:check": "run-s lint typecheck",
+    "release:publish": "vsce publish --no-dependencies",
+    "release:version": "bumpp --all --execute='pnpm release:build'",
     "typecheck": "tsc --noEmit",
     "vscode:prepublish": "pnpm run build"
   },
   "dependencies": {
-    "reactive-vscode": "^0.2.8"
+    "reactive-vscode": "^0.2.9"
   },
   "devDependencies": {
-    "@ntnyq/eslint-config": "^3.3.1",
+    "@ntnyq/eslint-config": "^3.9.1",
     "@ntnyq/prettier-config": "^1.22.0",
-    "@types/node": "^22.9.3",
+    "@types/node": "^22.10.1",
     "@types/vscode": "^1.95.0",
     "@vscode/vsce": "^3.2.1",
     "bumpp": "^9.8.1",
-    "eslint": "^9.15.0",
+    "eslint": "^9.16.0",
     "husky": "^9.1.7",
     "nano-staged": "^0.8.0",
-    "pnpm": "^9.14.2",
+    "pnpm": "^9.15.0",
     "prettier": "3.3.3",
     "tsup": "^8.3.5",
     "tsx": "^4.19.2",
@@ -60,43 +69,42 @@
   },
   "activationEvents": [
     "onLanguage:javascript",
-    "onLanguage:typescript",
     "onLanguage:javascriptreact",
+    "onLanguage:typescript",
     "onLanguage:typescriptreact"
   ],
   "contributes": {
     "commands": [],
     "configuration": {
-      "title": "ESLint Command",
       "properties": {
         "eslint-command.enable": {
-          "type": "boolean",
           "default": true,
-          "description": "Enable extension"
+          "description": "Enable extension",
+          "type": "boolean"
         },
         "eslint-command.languages": {
-          "type": "array",
-          "items": {
-            "type": "string"
-          },
           "default": [
             "javascript",
             "javascriptreact",
             "typescript",
             "typescriptreact"
           ],
-          "description": "Languages to enable command decorations"
+          "description": "Languages to enable command decorations",
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
         }
-      }
+      },
+      "title": "ESLint Command"
     }
   },
   "categories": [
     "Other"
   ],
   "engines": {
-    "vscode": "^1.95.3"
+    "vscode": "^1.95.0"
   },
-  "prettier": "@ntnyq/prettier-config",
   "nano-staged": {
     "*.{js,ts,mjs,cjs,md,json,yml,yaml}": "eslint --fix"
   }

@@ -7,12 +7,12 @@ export interface DecorationMatch extends DecorationOptions {
 export interface ESLintCommand {
   name: string
 
+  triggers: string[]
+
   /**
    * @default `line`
    */
-  commentType?: 'line' | 'block' | 'both'
+  commentType?: 'block' | 'both' | 'line'
 
   description?: string
-
-  triggers: string[]
 }

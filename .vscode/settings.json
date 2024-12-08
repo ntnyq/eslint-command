@@ -20,7 +20,7 @@
     "commands": [
       {
         "match": "package.json",
-        "cmd": "pnpm run generate:ext",
+        "cmd": "pnpm run generate:meta",
         "isAsync": true
       }
     ]
