@@ -109,6 +109,11 @@ export const builtInCommands: ESLintCommand[] = [
     description:
       'Convert an `if-else` statement to a [ternary expression](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/Conditional_operator).',
   },
+  {
+    description: 'Disallow certain syntaxes above or below the comment, with in the current block.',
+    name: 'no-x-above',
+    triggers: ['// @no-await-above', '// @no-await-below'],
+  },
 ]
 
 export const RE_LINE_COMMENT = /\/\/.*/
