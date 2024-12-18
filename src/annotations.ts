@@ -16,7 +16,11 @@ import type { DecorationMatch } from './types'
 export function useAnnotations() {
   const BuiltInDecoration = window.createTextEditorDecorationType({
     rangeBehavior: DecorationRangeBehavior.ClosedClosed,
-    color: 'rgb(255, 189, 42)',
+    color: config.annotationColor,
+    after: {
+      contentText: '🚀',
+      margin: '0 0 0 0.5em',
+    },
   })
   const editor = useActiveTextEditor()
   const text = useDocumentText(() => editor.value?.document)

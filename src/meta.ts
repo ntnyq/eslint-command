@@ -24,15 +24,18 @@ export const commands = {
  * Type union of all configs
  */
 export type ConfigKey = 
+  | "eslint-command.annotationColor"
   | "eslint-command.enable"
   | "eslint-command.languages"
 
 export interface ConfigKeyTypeMap {
+  "eslint-command.annotationColor": string,
   "eslint-command.enable": boolean,
   "eslint-command.languages": string[],
 }
 
 export interface ConfigShorthandMap {
+  annotationColor: "eslint-command.annotationColor",
   enable: "eslint-command.enable",
   languages: "eslint-command.languages",
 }
@@ -47,6 +50,16 @@ export interface ConfigItem<T extends keyof ConfigKeyTypeMap> {
  * Configs map registered by `ntnyq.eslint-command`
  */
 export const configs = {
+  /**
+   * Color of annotation
+   * @key `eslint-command.annotationColor`
+   * @default `"rgb(255, 189, 42)"`
+   * @type `string`
+   */
+  annotationColor: {
+    key: "eslint-command.annotationColor",
+    default: "rgb(255, 189, 42)",
+  } as ConfigItem<"eslint-command.annotationColor">,
   /**
    * Enable extension
    * @key `eslint-command.enable`
@@ -70,6 +83,7 @@ export const configs = {
 }
 
 export interface ScopedConfigKeyTypeMap {
+  "annotationColor": string,
   "enable": boolean,
   "languages": string[],
 }
@@ -77,6 +91,7 @@ export interface ScopedConfigKeyTypeMap {
 export const scopedConfigs = {
   scope: "eslint-command",
   defaults: {
+    "annotationColor": "rgb(255, 189, 42)",
     "enable": true,
     "languages": ["javascript","javascriptreact","typescript","typescriptreact"],
   } satisfies ScopedConfigKeyTypeMap,
@@ -84,12 +99,14 @@ export const scopedConfigs = {
 
 export interface NestedConfigs {
   "eslint-command": {
+    "annotationColor": string,
     "enable": boolean,
     "languages": string[],
   },
 }
 
 export interface NestedScopedConfigs {
+  "annotationColor": string,
   "enable": boolean,
   "languages": string[],
 }

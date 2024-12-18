@@ -60,6 +60,7 @@
     "eslint": "^9.17.0",
     "husky": "^9.1.7",
     "nano-staged": "^0.8.0",
+    "npm-run-all2": "^7.0.2",
     "pnpm": "^9.15.0",
     "prettier": "3.4.2",
     "tsup": "^8.3.5",
@@ -77,6 +78,11 @@
     "commands": [],
     "configuration": {
       "properties": {
+        "eslint-command.annotationColor": {
+          "default": "rgb(255, 189, 42)",
+          "description": "Color of annotation",
+          "type": "string"
+        },
         "eslint-command.enable": {
           "default": true,
           "description": "Enable extension",
