@@ -75,7 +75,13 @@
     "onLanguage:typescriptreact"
   ],
   "contributes": {
-    "commands": [],
+    "commands": [
+      {
+        "category": "ESLint Command",
+        "command": "eslint-command.insert-command",
+        "title": "Insert Command"
+      }
+    ],
     "configuration": {
       "properties": {
         "eslint-command.annotationColor": {

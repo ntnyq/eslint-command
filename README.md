@@ -10,11 +10,16 @@
 
 ## Features
 
+- Insert ESLint command via VSCode command
+- Add annotations for ESLint command
+
 ## Commands
 
 <!-- commands -->
 
-**No data**
+| Command                         | Title                          |
+| ------------------------------- | ------------------------------ |
+| `eslint-command.insert-command` | ESLint Command: Insert Command |
 
 <!-- commands -->
 

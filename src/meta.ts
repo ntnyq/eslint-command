@@ -12,12 +12,18 @@ export const extensionId = `${publisher}.${name}`
 /**
  * Type union of all commands
  */
-export type CommandKey = never
+export type CommandKey = 
+  | "eslint-command.insert-command"
 
 /**
  * Commands map registed by `ntnyq.eslint-command`
  */
 export const commands = {
+  /**
+   * Insert Command
+   * @value `eslint-command.insert-command`
+   */
+  insertCommand: "eslint-command.insert-command",
 } satisfies Record<string, CommandKey>
 
 /**
