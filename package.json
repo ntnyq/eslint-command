@@ -51,7 +51,7 @@
     "reactive-vscode": "^0.2.9"
   },
   "devDependencies": {
-    "@ntnyq/eslint-config": "^3.9.3",
+    "@ntnyq/eslint-config": "^3.9.4",
     "@ntnyq/prettier-config": "^1.22.0",
     "@types/node": "^22.10.2",
     "@types/vscode": "^1.96.0",
@@ -88,6 +88,11 @@
           "default": "rgb(255, 189, 42)",
           "description": "Color of annotation",
           "type": "string"
+        },
+        "eslint-command.completion": {
+          "default": true,
+          "description": "Enable completion",
+          "type": "boolean"
         },
         "eslint-command.enable": {
           "default": true,
