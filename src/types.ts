@@ -6,6 +6,11 @@ export interface DecorationMatch extends DecorationOptions {
 
 export interface ESLintCommand {
   /**
+   * Command description
+   */
+  description: string
+
+  /**
    * Command name
    */
   name: string
@@ -19,11 +24,6 @@ export interface ESLintCommand {
    * @default `line`
    */
   commentType?: 'block' | 'both' | 'line'
-
-  /**
-   * Command description
-   */
-  description?: string
 
   /**
    * Command docs url

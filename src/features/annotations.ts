@@ -7,8 +7,8 @@ import {
   watchEffect,
 } from 'reactive-vscode'
 import { DecorationRangeBehavior, Range, window } from 'vscode'
+import { useESLintCommands } from '../composables/commands'
 import { config } from '../config'
-import { builtInCommands } from '../constants'
 import { getCommandMarkdown, logger } from '../utils'
 import type { DecorationMatch } from '../types'
 
@@ -44,7 +44,9 @@ export function useAnnotations() {
 
     const keys: [Range, string][] = []
 
-    builtInCommands.forEach(command => {
+    const { eslintCommands } = useESLintCommands()
+
+    eslintCommands.value.forEach(command => {
       const regexp = new RegExp(`${command.triggers.join('|')}`, 'g')
       let match: RegExpExecArray | null = null
 

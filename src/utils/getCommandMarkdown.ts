@@ -1,13 +1,15 @@
 import { MarkdownString } from 'vscode'
-import { builtInCommands } from '../constants'
+import { useESLintCommands } from '../composables/commands'
 import { createDocsUrl } from './createDocUrl'
 
 export function getCommandMarkdown(name: string) {
-  const command = builtInCommands.find(c => c.name === name)
+  const { eslintCommands } = useESLintCommands()
+
+  const command = eslintCommands.value.find(c => c.name === name)
 
   if (!command) return
 
   return new MarkdownString(
-    `#### [eslint-plugin-command](https://eslint-plugin-command.antfu.me)\n\n[${name}](${createDocsUrl(name)})\n\n${command.description ?? ''}`,
+    `#### [eslint-plugin-command](https://eslint-plugin-command.antfu.me)\n\n[${name}](${command.url || createDocsUrl(name)})\n\n${command.description}`,
   )
 }

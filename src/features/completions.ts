@@ -6,8 +6,8 @@ import {
   languages,
   MarkdownString,
 } from 'vscode'
+import { useESLintCommands } from '../composables/commands'
 import { config } from '../config'
-import { builtInCommands } from '../constants'
 import { createDocsUrl, logger } from '../utils'
 import type {
   CancellationToken,
@@ -18,7 +18,6 @@ import type {
   ProviderResult,
   TextDocument,
 } from 'vscode'
-import type { ESLintCommand } from '../types'
 
 enum CommandTrigger {
   SPACE = ' ',
@@ -33,18 +32,9 @@ class CommandCompletionProvider implements CompletionItemProvider {
 
   static triggers = [CommandTrigger.SPACE, CommandTrigger.AT]
 
-  getAllCommands() {
-    const allCommands: ESLintCommand[] = [
-      ...builtInCommands,
-
-      // TODO: support custom commands
-    ]
-
-    return allCommands
-  }
-
   getCompletionList({ replaced, lineText }: { replaced: string; lineText: string }) {
-    const completionList = this.getAllCommands().reduce<CompletionItem[]>(
+    const { eslintCommands } = useESLintCommands()
+    const completionList = eslintCommands.value.reduce<CompletionItem[]>(
       (list, command) => [
         ...list,
         ...command.triggers
@@ -52,7 +42,7 @@ class CommandCompletionProvider implements CompletionItemProvider {
           .map(trigger => {
             const completionItem = new CompletionItem(trigger, CompletionItemKind.Text)
             completionItem.documentation = new MarkdownString(
-              `#### [${command.name}](${createDocsUrl(command.name)})\n\n${command.description ?? ''}`,
+              `#### [${command.name}](${command.url || createDocsUrl(command.name)})\n\n${command.description}`,
             )
             completionItem.insertText = trigger.replace(`${replaced}`, '')
             return completionItem

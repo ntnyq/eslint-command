@@ -1,7 +1,7 @@
 import { computed, useActiveTextEditor, useCommand } from 'reactive-vscode'
 import { SnippetString, window } from 'vscode'
+import { useESLintCommands } from '../composables/commands'
 import { config } from '../config'
-import { builtInCommands } from '../constants'
 import { commands } from '../meta'
 import { logger } from '../utils'
 
@@ -17,8 +17,10 @@ export function useCommands() {
       return logger.info('Unsupported language')
     }
 
+    const { eslintCommands } = useESLintCommands()
+
     const command = await window.showQuickPick(
-      builtInCommands.map(command => ({
+      eslintCommands.value.map(command => ({
         label: command.name,
         description: command.description,
       })),
@@ -31,7 +33,7 @@ export function useCommands() {
       return logger.info('No command selected')
     }
 
-    const trigger = builtInCommands.find(c => c.name === command.label)?.triggers?.[0]
+    const trigger = eslintCommands.value.find(c => c.name === command.label)?.triggers?.[0]
 
     if (!trigger) {
       return logger.warn('No trigger found')

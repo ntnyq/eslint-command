@@ -1,4 +1,16 @@
 {
   "eslint-command.enable": true,
+  "eslint-command.commands": [
+    {
+      "name": "regexper",
+      "triggers": ["// @regexper", "/* @regexper */"],
+      "url": "https://github.com/ntnyq/eslint-config/tree/main/src/commands",
+      "description": "Generate up-to-date [regexper](https://regexper.com/) links for your RegExp patterns in jsdoc comments. Helps you test and inspect the RegExp easily."
+    },
+    {
+      "name": "no-arrow",
+      "triggers": []
+    }
+  ],
   "eslint-command.languages": ["javascript", "javascriptreact", "typescript"]
 }

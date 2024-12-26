@@ -111,6 +111,29 @@
               },
               "name": {
                 "description": "command name",
+                "not": {
+                  "enum": [
+                    "hoist-regexp",
+                    "inline-arrow",
+                    "keep-sorted",
+                    "keep-unique",
+                    "no-shorthand",
+                    "no-type",
+                    "no-x-above",
+                    "regex101",
+                    "to-arrow",
+                    "to-destructuring",
+                    "to-dynamic-import",
+                    "to-for-each",
+                    "to-for-of",
+                    "to-function",
+                    "to-promise-all",
+                    "to-string-literal",
+                    "to-template-literal",
+                    "to-ternary"
+                  ],
+                  "type": "string"
+                },
                 "type": "string"
               },
               "triggers": {
@@ -120,6 +143,7 @@
                   "description": "command trigger",
                   "type": "string"
                 },
+                "minItems": 1,
                 "type": "array"
               },
               "url": {
@@ -128,6 +152,7 @@
               }
             },
             "required": [
+              "description",
               "name",
               "triggers"
             ],
