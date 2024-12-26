@@ -1,5 +1,6 @@
 import { MarkdownString } from 'vscode'
-import { builtInCommands, createDocsUrl } from './constants'
+import { builtInCommands } from '../constants'
+import { createDocsUrl } from './createDocUrl'
 
 export function getCommandMarkdown(name: string) {
   const command = builtInCommands.find(c => c.name === name)

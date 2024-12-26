@@ -1,7 +1,4 @@
-import type { ESLintCommand } from './types'
-
-export const createDocsUrl = (ruleName: string) =>
-  `https://eslint-plugin-command.antfu.me/commands/${ruleName}`
+import type { ESLintCommand } from '../types'
 
 export const builtInCommands: ESLintCommand[] = [
   {
@@ -115,6 +112,3 @@ export const builtInCommands: ESLintCommand[] = [
     triggers: ['// @no-await-above', '// @no-await-below'],
   },
 ]
-
-export const RE_LINE_COMMENT = /\/\/.*/
-export const RE_BLOCK_COMMENT = /\/\*[\s\S]*?\*\//g

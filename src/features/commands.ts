@@ -1,9 +1,9 @@
 import { computed, useActiveTextEditor, useCommand } from 'reactive-vscode'
 import { SnippetString, window } from 'vscode'
-import { config } from './config'
-import { builtInCommands } from './constants'
-import { commands } from './meta'
-import { logger } from './utils'
+import { config } from '../config'
+import { builtInCommands } from '../constants'
+import { commands } from '../meta'
+import { logger } from '../utils'
 
 export function useCommands() {
   const editor = useActiveTextEditor()

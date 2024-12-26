@@ -5,8 +5,14 @@ export interface DecorationMatch extends DecorationOptions {
 }
 
 export interface ESLintCommand {
+  /**
+   * Command name
+   */
   name: string
 
+  /**
+   * Command triggers
+   */
   triggers: string[]
 
   /**
@@ -14,5 +20,13 @@ export interface ESLintCommand {
    */
   commentType?: 'block' | 'both' | 'line'
 
+  /**
+   * Command description
+   */
   description?: string
+
+  /**
+   * Command docs url
+   */
+  url?: string
 }

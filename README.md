@@ -33,6 +33,7 @@
 | Key                              | Description                             | Type      | Default                                                           |
 | -------------------------------- | --------------------------------------- | --------- | ----------------------------------------------------------------- |
 | `eslint-command.annotationColor` | Color of annotation                     | `string`  | `"rgb(255, 189, 42)"`                                             |
+| `eslint-command.commands`        | User custom commands                    | `array`   | `[]`                                                              |
 | `eslint-command.completion`      | Enable completion                       | `boolean` | `true`                                                            |
 | `eslint-command.enable`          | Enable extension                        | `boolean` | `true`                                                            |
 | `eslint-command.languages`       | Languages to enable command decorations | `array`   | `["javascript","javascriptreact","typescript","typescriptreact"]` |

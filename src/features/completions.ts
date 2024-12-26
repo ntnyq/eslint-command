@@ -6,9 +6,9 @@ import {
   languages,
   MarkdownString,
 } from 'vscode'
-import { config } from './config'
-import { builtInCommands, createDocsUrl } from './constants'
-import { logger } from './utils'
+import { config } from '../config'
+import { builtInCommands } from '../constants'
+import { createDocsUrl, logger } from '../utils'
 import type {
   CancellationToken,
   CompletionContext,
@@ -18,7 +18,7 @@ import type {
   ProviderResult,
   TextDocument,
 } from 'vscode'
-import type { ESLintCommand } from './types'
+import type { ESLintCommand } from '../types'
 
 enum CommandTrigger {
   SPACE = ' ',

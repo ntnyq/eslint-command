@@ -7,11 +7,10 @@ import {
   watchEffect,
 } from 'reactive-vscode'
 import { DecorationRangeBehavior, Range, window } from 'vscode'
-import { config } from './config'
-import { builtInCommands } from './constants'
-import { getCommandMarkdown } from './markdown'
-import { logger } from './utils'
-import type { DecorationMatch } from './types'
+import { config } from '../config'
+import { builtInCommands } from '../constants'
+import { getCommandMarkdown, logger } from '../utils'
+import type { DecorationMatch } from '../types'
 
 export function useAnnotations() {
   const BuiltInDecoration = window.createTextEditorDecorationType({

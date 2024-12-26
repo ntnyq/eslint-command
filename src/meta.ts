@@ -31,12 +31,14 @@ export const commands = {
  */
 export type ConfigKey = 
   | "eslint-command.annotationColor"
+  | "eslint-command.commands"
   | "eslint-command.completion"
   | "eslint-command.enable"
   | "eslint-command.languages"
 
 export interface ConfigKeyTypeMap {
   "eslint-command.annotationColor": string,
+  "eslint-command.commands": { 'commentType': ("block" | "both" | "line"); 'description': string; 'name': string; 'triggers': string[]; 'url': string }[],
   "eslint-command.completion": boolean,
   "eslint-command.enable": boolean,
   "eslint-command.languages": string[],
@@ -44,9 +46,18 @@ export interface ConfigKeyTypeMap {
 
 export interface ConfigShorthandMap {
   annotationColor: "eslint-command.annotationColor",
+  commands: "eslint-command.commands",
   completion: "eslint-command.completion",
   enable: "eslint-command.enable",
   languages: "eslint-command.languages",
+}
+
+export interface ConfigShorthandTypeMap {
+  annotationColor: string,
+  commands: { 'commentType': ("block" | "both" | "line"); 'description': string; 'name': string; 'triggers': string[]; 'url': string }[],
+  completion: boolean,
+  enable: boolean,
+  languages: string[],
 }
 
 export interface ConfigItem<T extends keyof ConfigKeyTypeMap> {
@@ -69,6 +80,16 @@ export const configs = {
     key: "eslint-command.annotationColor",
     default: "rgb(255, 189, 42)",
   } as ConfigItem<"eslint-command.annotationColor">,
+  /**
+   * User custom commands
+   * @key `eslint-command.commands`
+   * @default `[]`
+   * @type `array`
+   */
+  commands: {
+    key: "eslint-command.commands",
+    default: [],
+  } as ConfigItem<"eslint-command.commands">,
   /**
    * Enable completion
    * @key `eslint-command.completion`
@@ -103,6 +124,7 @@ export const configs = {
 
 export interface ScopedConfigKeyTypeMap {
   "annotationColor": string,
+  "commands": { 'commentType': ("block" | "both" | "line"); 'description': string; 'name': string; 'triggers': string[]; 'url': string }[],
   "completion": boolean,
   "enable": boolean,
   "languages": string[],
@@ -112,6 +134,7 @@ export const scopedConfigs = {
   scope: "eslint-command",
   defaults: {
     "annotationColor": "rgb(255, 189, 42)",
+    "commands": [],
     "completion": true,
     "enable": true,
     "languages": ["javascript","javascriptreact","typescript","typescriptreact"],
@@ -121,6 +144,7 @@ export const scopedConfigs = {
 export interface NestedConfigs {
   "eslint-command": {
     "annotationColor": string,
+    "commands": { 'commentType': ("block" | "both" | "line"); 'description': string; 'name': string; 'triggers': string[]; 'url': string }[],
     "completion": boolean,
     "enable": boolean,
     "languages": string[],
@@ -129,6 +153,7 @@ export interface NestedConfigs {
 
 export interface NestedScopedConfigs {
   "annotationColor": string,
+  "commands": { 'commentType': ("block" | "both" | "line"); 'description': string; 'name': string; 'triggers': string[]; 'url': string }[],
   "completion": boolean,
   "enable": boolean,
   "languages": string[],

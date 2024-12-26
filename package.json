@@ -51,7 +51,7 @@
     "reactive-vscode": "^0.2.9"
   },
   "devDependencies": {
-    "@ntnyq/eslint-config": "^3.10.1",
+    "@ntnyq/eslint-config": "^3.10.2",
     "@ntnyq/prettier-config": "^1.22.0",
     "@types/node": "^22.10.2",
     "@types/vscode": "^1.96.0",
@@ -66,7 +66,7 @@
     "tsup": "^8.3.5",
     "tsx": "^4.19.2",
     "typescript": "^5.7.2",
-    "vscode-ext-gen": "^0.5.4"
+    "vscode-ext-gen": "^0.5.5"
   },
   "activationEvents": [
     "onLanguage:javascript",
@@ -88,6 +88,52 @@
           "default": "rgb(255, 189, 42)",
           "description": "Color of annotation",
           "type": "string"
+        },
+        "eslint-command.commands": {
+          "default": [],
+          "description": "User custom commands",
+          "items": {
+            "additionalProperties": false,
+            "properties": {
+              "commentType": {
+                "default": "line",
+                "description": "command comment type",
+                "enum": [
+                  "block",
+                  "both",
+                  "line"
+                ],
+                "type": "string"
+              },
+              "description": {
+                "description": "command description",
+                "type": "string"
+              },
+              "name": {
+                "description": "command name",
+                "type": "string"
+              },
+              "triggers": {
+                "default": [],
+                "description": "command triggers",
+                "items": {
+                  "description": "command trigger",
+                  "type": "string"
+                },
+                "type": "array"
+              },
+              "url": {
+                "description": "command docs url",
+                "type": "string"
+              }
+            },
+            "required": [
+              "name",
+              "triggers"
+            ],
+            "type": "object"
+          },
+          "type": "array"
         },
         "eslint-command.completion": {
           "default": true,
@@ -120,7 +166,7 @@
     "Other"
   ],
   "engines": {
-    "vscode": "^1.96.2"
+    "vscode": "^1.96.0"
   },
   "nano-staged": {
     "*.{js,ts,mjs,cjs,md,json,yml,yaml}": "eslint --fix"
