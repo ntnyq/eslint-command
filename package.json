@@ -4,7 +4,7 @@
   "displayName": "ESLint Command",
   "preview": true,
   "type": "commonjs",
-  "version": "0.0.4",
+  "version": "0.0.5",
   "private": true,
   "packageManager": "pnpm@9.15.1",
   "description": "VSCode support for eslint-plugin-command",
