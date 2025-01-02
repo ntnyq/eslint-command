@@ -113,12 +113,12 @@ export const configs = {
   /**
    * Languages to enable command decorations
    * @key `eslint-command.languages`
-   * @default `["javascript","javascriptreact","typescript","typescriptreact"]`
+   * @default `["javascript","javascriptreact","markdown","typescript","typescriptreact"]`
    * @type `array`
    */
   languages: {
     key: "eslint-command.languages",
-    default: ["javascript","javascriptreact","typescript","typescriptreact"],
+    default: ["javascript","javascriptreact","markdown","typescript","typescriptreact"],
   } as ConfigItem<"eslint-command.languages">,
 }
 
@@ -137,7 +137,7 @@ export const scopedConfigs = {
     "commands": [],
     "completion": true,
     "enable": true,
-    "languages": ["javascript","javascriptreact","typescript","typescriptreact"],
+    "languages": ["javascript","javascriptreact","markdown","typescript","typescriptreact"],
   } satisfies ScopedConfigKeyTypeMap,
 }
 

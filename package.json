@@ -69,10 +69,7 @@
     "vscode-ext-gen": "^0.5.5"
   },
   "activationEvents": [
-    "onLanguage:javascript",
-    "onLanguage:javascriptreact",
-    "onLanguage:typescript",
-    "onLanguage:typescriptreact"
+    "onStartupFinished"
   ],
   "contributes": {
     "commands": [
@@ -174,6 +171,7 @@
           "default": [
             "javascript",
             "javascriptreact",
+            "markdown",
             "typescript",
             "typescriptreact"
           ],

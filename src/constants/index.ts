@@ -3,4 +3,11 @@ export * from './commands'
 /**
  * default supported language ids
  */
-export const defaultLanguageIds = ['javascript', 'javascriptreact', 'typescript', 'typescriptreact']
+// @keep-sorted
+export const defaultLanguageIds = [
+  'javascript',
+  'javascriptreact',
+  'markdown',
+  'typescript',
+  'typescriptreact',
+]
