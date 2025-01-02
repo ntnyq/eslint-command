@@ -8,11 +8,11 @@ import {
 } from 'reactive-vscode'
 import { DecorationRangeBehavior, Range, window } from 'vscode'
 import { useESLintCommands } from '../composables/commands'
-import { config } from '../config'
+import { config, getLanguageIds } from '../config'
 import { getCommandMarkdown, logger } from '../utils'
 import type { DecorationMatch } from '../types'
 
-export function useAnnotations() {
+export async function useAnnotations() {
   const BuiltInDecoration = window.createTextEditorDecorationType({
     rangeBehavior: DecorationRangeBehavior.ClosedClosed,
     color: config.annotationColor,
@@ -25,26 +25,28 @@ export function useAnnotations() {
   const text = useDocumentText(() => editor.value?.document)
   const languageId = computed(() => editor.value?.document.languageId)
 
+  const { eslintCommands } = useESLintCommands()
+
   const decorations = shallowRef<DecorationMatch[]>([])
+
+  const supportedLanguages = await getLanguageIds()
 
   useActiveEditorDecorations(BuiltInDecoration, decorations)
 
   // Calculate decorations
   watchEffect(() => {
-    if (!editor.value || !languageId.value || !config.enable) {
+    if (!editor.value || !text.value || !languageId.value) {
       decorations.value = []
       return
     }
 
-    if (!config.languages.includes(languageId.value)) {
+    if (!supportedLanguages.includes(languageId.value)) {
       decorations.value = []
       logger.warn(`❗️ Language ${languageId.value} is not supported`)
       return
     }
 
     const keys: [Range, string][] = []
-
-    const { eslintCommands } = useESLintCommands()
 
     eslintCommands.value.forEach(command => {
       const regexp = new RegExp(`${command.triggers.join('|')}`, 'g')

@@ -51,9 +51,9 @@
     "reactive-vscode": "^0.2.9"
   },
   "devDependencies": {
-    "@ntnyq/eslint-config": "^3.10.4",
+    "@ntnyq/eslint-config": "^3.11.0",
     "@ntnyq/prettier-config": "^1.22.0",
-    "@types/node": "^22.10.2",
+    "@types/node": "^22.10.3",
     "@types/vscode": "^1.96.0",
     "@vscode/vsce": "^3.2.1",
     "bumpp": "^9.9.2",
@@ -69,10 +69,7 @@
     "vscode-ext-gen": "^0.5.5"
   },
   "activationEvents": [
-    "onLanguage:javascript",
-    "onLanguage:javascriptreact",
-    "onLanguage:typescript",
-    "onLanguage:typescriptreact"
+    "onStartupFinished"
   ],
   "contributes": {
     "commands": [
@@ -174,6 +171,7 @@
           "default": [
             "javascript",
             "javascriptreact",
+            "markdown",
             "typescript",
             "typescriptreact"
           ],
@@ -181,7 +179,8 @@
           "items": {
             "type": "string"
           },
-          "type": "array"
+          "type": "array",
+          "uniqueItems": true
         }
       },
       "title": "ESLint Command"
@@ -191,7 +190,7 @@
     "Other"
   ],
   "engines": {
-    "vscode": "^1.96.2"
+    "vscode": "^1.96.0"
   },
   "nano-staged": {
     "*.{js,ts,mjs,cjs,md,json,yml,yaml}": "eslint --fix"

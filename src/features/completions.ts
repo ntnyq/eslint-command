@@ -7,58 +7,69 @@ import {
   MarkdownString,
 } from 'vscode'
 import { useESLintCommands } from '../composables/commands'
-import { config } from '../config'
+import { config, getLanguageIds } from '../config'
 import { createDocsUrl, logger } from '../utils'
 import type {
   CancellationToken,
   CompletionContext,
   CompletionItemProvider,
-  DocumentSelector,
   Position,
-  ProviderResult,
   TextDocument,
 } from 'vscode'
+import type { ESLintCommand } from '../types'
 
 enum CommandTrigger {
   SPACE = ' ',
   AT = '@',
 }
 
-class CommandCompletionProvider implements CompletionItemProvider {
-  static selector: DocumentSelector = config.languages.map(language => ({
-    language,
-    scheme: 'file',
-  }))
+class ESLintCommandCompletionItem extends CompletionItem {
+  eslintCommand: ESLintCommand
 
-  static triggers = [CommandTrigger.SPACE, CommandTrigger.AT]
-
-  getCompletionList({ replaced, lineText }: { replaced: string; lineText: string }) {
-    const { eslintCommands } = useESLintCommands()
-    const completionList = eslintCommands.value.reduce<CompletionItem[]>(
-      (list, command) => [
-        ...list,
-        ...command.triggers
-          .filter(trigger => trigger.startsWith(lineText))
-          .map(trigger => {
-            const completionItem = new CompletionItem(trigger, CompletionItemKind.Text)
-            completionItem.documentation = new MarkdownString(
-              `#### [${command.name}](${command.url || createDocsUrl(command.name)})\n\n${command.description}`,
-            )
-            completionItem.insertText = trigger.replace(`${replaced}`, '')
-            return completionItem
-          }),
-      ],
-      [],
-    )
-    return completionList
+  constructor(label: string, kind: CompletionItemKind, eslintCommand: ESLintCommand) {
+    super(label, kind)
+    this.eslintCommand = eslintCommand
   }
+}
 
+function getMarkdown(eslintCommand: ESLintCommand) {
+  return new MarkdownString(
+    `#### [${eslintCommand.name}](${eslintCommand.url || createDocsUrl(eslintCommand.name)})\n\n${eslintCommand.description}`,
+  )
+}
+
+function getCompletionList({ replaced, lineText }: { replaced: string; lineText: string }) {
+  const { eslintCommands } = useESLintCommands()
+
+  const completionList: ESLintCommandCompletionItem[] = []
+
+  eslintCommands.value.forEach(eslintCommand => {
+    eslintCommand.triggers.forEach(trigger => {
+      if (trigger.startsWith(lineText)) {
+        const completionItem = new ESLintCommandCompletionItem(
+          trigger,
+          CompletionItemKind.Text,
+          eslintCommand,
+        )
+
+        completionItem.documentation = getMarkdown(eslintCommand)
+        completionItem.insertText = trigger.replace(`${replaced}`, '')
+
+        completionList.push(completionItem)
+      }
+    })
+  })
+
+  return new CompletionList(completionList)
+}
+
+const provider: CompletionItemProvider<ESLintCommandCompletionItem> = {
   provideCompletionItems(
     document: TextDocument,
     position: Position,
     token: CancellationToken,
     context: CompletionContext,
-  ): ProviderResult<CompletionItem[] | CompletionList<CompletionItem>> {
+  ) {
     if (!config.completion) {
       logger.info('Completion is disabled')
       return
@@ -68,33 +79,30 @@ class CommandCompletionProvider implements CompletionItemProvider {
     const lineText = line.text.slice(0, Math.max(0, position.character))
 
     if (lineText.startsWith('///') && context.triggerCharacter === CommandTrigger.SPACE) {
-      return new CompletionList(
-        this.getCompletionList({
-          replaced: `///${CommandTrigger.SPACE}`,
-          lineText,
-        }),
-      )
+      return getCompletionList({
+        replaced: `///${CommandTrigger.SPACE}`,
+        lineText,
+      })
     }
 
     if (lineText.startsWith('// @') && context.triggerCharacter === CommandTrigger.AT) {
-      return new CompletionList(
-        this.getCompletionList({
-          replaced: `// ${CommandTrigger.AT}`,
-          lineText,
-        }),
-      )
+      return getCompletionList({
+        replaced: `// ${CommandTrigger.AT}`,
+        lineText,
+      })
     }
-  }
+  },
 }
 
-export function useCompletions() {
+export async function useCompletions() {
   const ctx = extensionContext.value!
 
   ctx.subscriptions.push(
     languages.registerCompletionItemProvider(
-      CommandCompletionProvider.selector,
-      new CommandCompletionProvider(),
-      ...CommandCompletionProvider.triggers,
+      await getLanguageIds(),
+      provider,
+      CommandTrigger.SPACE,
+      CommandTrigger.AT,
     ),
   )
 }

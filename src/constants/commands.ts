@@ -33,9 +33,13 @@ export const builtInCommands: ESLintCommand[] = [
   },
   {
     name: 'regex101',
-    triggers: ['// @regex101', '/* @regex101 */'],
     description:
       'Generate up-to-date [regex101](https://regex101.com) links for your RegExp patterns in jsdoc comments. Helps you test and inspect the RegExp easily.',
+    triggers: [
+      '// @regex101',
+      // TODO: support block comments
+      '/* @regex101 */',
+    ],
   },
   {
     description: 'Convert a standard function declaration to an arrow function.',
