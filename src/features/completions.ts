@@ -32,12 +32,35 @@ class ESLintCommandCompletionItem extends CompletionItem {
   }
 }
 
+/**
+ * Generates a Markdown-formatted documentation string for an ESLint command.
+ *
+ * @param eslintCommand - The ESLint command to generate documentation for
+ * @returns A MarkdownString with the command's name, link to documentation, and description
+ *
+ * @remarks
+ * Creates a clickable link to the command's documentation, either using the provided URL 
+ * or generating a default documentation URL. Includes the command's name and description.
+ */
 function getMarkdown(eslintCommand: ESLintCommand) {
   return new MarkdownString(
     `#### [${eslintCommand.name}](${eslintCommand.url || createDocsUrl(eslintCommand.name)})\n\n${eslintCommand.description}`,
   )
 }
 
+/**
+ * Generates a list of ESLint command completion items based on the current line text.
+ *
+ * @remarks
+ * This function filters ESLint commands by their triggers and creates completion items
+ * for triggers that match the beginning of the current line text.
+ *
+ * @param replaced - The text that will be replaced in the completion trigger
+ * @param lineText - The current text at the beginning of the line
+ * @returns A list of ESLint command completion items
+ *
+ * @beta
+ */
 function getCompletionList({ replaced, lineText }: { replaced: string; lineText: string }) {
   const { eslintCommands } = useESLintCommands()
 
@@ -94,6 +117,18 @@ const provider: CompletionItemProvider<ESLintCommandCompletionItem> = {
   },
 }
 
+/**
+ * Registers ESLint command completion item provider for specified language IDs.
+ *
+ * @remarks
+ * This function sets up an asynchronous completion provider for ESLint commands
+ * across multiple programming languages. It uses predefined triggers like space
+ * and '@' to initiate command completions.
+ *
+ * @returns A promise that resolves when the completion provider is registered
+ *
+ * @beta
+ */
 export async function useCompletions() {
   const ctx = extensionContext.value!
 
