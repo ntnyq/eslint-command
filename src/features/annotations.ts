@@ -30,7 +30,7 @@ export async function useAnnotations() {
 
   const decorations = shallowRef<DecorationMatch[]>([])
 
-  const supportedLanguages = await getLanguageIds()
+  const supportedLanguages = shallowRef<string[]>([])
 
   useActiveEditorDecorations(BuiltInDecoration, decorations)
 
@@ -41,7 +41,7 @@ export async function useAnnotations() {
       return
     }
 
-    if (!supportedLanguages.includes(languageId.value)) {
+    if (!supportedLanguages.value.includes(languageId.value)) {
       decorations.value = []
       logger.warn(`❗️ Language ${languageId.value} is not supported`)
       return
@@ -76,5 +76,9 @@ export async function useAnnotations() {
 
       return item
     })
+  })
+
+  watchEffect(async () => {
+    supportedLanguages.value = await getLanguageIds()
   })
 }
