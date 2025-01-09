@@ -9,24 +9,6 @@ export const config = defineConfigObject<ScopedConfigKeyTypeMap>(
   scopedConfigs.defaults,
 )
 
-/**
- * Validates an array of language identifiers against a list of all available languages.
- *
- * @param targets - An array of language identifiers to validate
- * @param allLanguages - An array of all available language identifiers
- * @returns An array of valid language identifiers
- *
- * @remarks
- * This function filters out languages that are not present in the `allLanguages` array.
- * If any invalid languages are found, a warning message is displayed in the VS Code window.
- *
- * @example
- * ```typescript
- * const validLangs = await validateLanguages(['typescript', 'python'], ['typescript', 'javascript', 'python'])
- * // Returns: ['typescript', 'python']
- * // Shows warning for any invalid languages
- * ```
- */
 async function validateLanguages(targets: string[], allLanguages: string[]) {
   const invalidLanguages: string[] = []
   const validateLanguages = targets.filter(language => {
@@ -44,17 +26,6 @@ async function validateLanguages(targets: string[], allLanguages: string[]) {
   return validateLanguages
 }
 
-/**
- * Retrieves a unique list of valid language identifiers.
- *
- * @remarks
- * This function combines default language IDs with configured languages,
- * ensuring only valid and supported languages are returned.
- *
- * @returns An array of unique, valid language identifiers
- *
- * @async
- */
 export async function getLanguageIds() {
   const allLanguages = await languages.getLanguages()
   const languageIds = config.languages || []

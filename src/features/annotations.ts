@@ -12,27 +12,6 @@ import { config, getLanguageIds } from '../config'
 import { getCommandMarkdown, logger } from '../utils'
 import type { DecorationMatch } from '../types'
 
-/**
- * Manages text editor decorations for ESLint commands in a Visual Studio Code extension.
- *
- * @remarks
- * This asynchronous function creates decorations for ESLint commands in the active text editor.
- * It supports dynamic language detection and provides visual annotations for command triggers.
- *
- * @description
- * The function performs the following key operations:
- * - Creates a custom text decoration with a rocket (🚀) icon
- * - Retrieves the active text editor and document
- * - Filters decorations based on supported programming languages
- * - Identifies ESLint command triggers in the document
- * - Generates hover messages for detected commands
- *
- * @returns {void}
- *
- * @throws {Error} If there are issues retrieving the active editor or document
- *
- * @beta
- */
 export async function useAnnotations() {
   const BuiltInDecoration = window.createTextEditorDecorationType({
     rangeBehavior: DecorationRangeBehavior.ClosedClosed,
