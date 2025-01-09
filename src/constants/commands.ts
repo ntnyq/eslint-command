@@ -12,6 +12,11 @@ export const builtInCommands: ESLintCommand[] = [
     triggers: ['/// inline-arrow', '/// ia'],
   },
   {
+    description: 'Keep specific symbols within a block of code are aligned vertically.',
+    name: 'keep-aligned',
+    triggers: ['/// keep-aligned', '// @keep-aligned'],
+  },
+  {
     description: 'Keep the object keys or array items sorted.',
     name: 'keep-sorted',
     triggers: ['/// keep-sorted', '// @keep-sorted'],

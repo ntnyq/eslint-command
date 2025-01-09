@@ -9,6 +9,18 @@ export const config = defineConfigObject<ScopedConfigKeyTypeMap>(
   scopedConfigs.defaults,
 )
 
+/**
+ * default style for annotation
+ */
+export const DEFAULT_ANNOTATION = {
+  color: 'rgb(255, 189, 42)',
+  before: {
+    contentText: '🚀',
+    margin: '0 0.5em 0 0',
+  },
+  cursor: 'pointer',
+}
+
 async function validateLanguages(targets: string[], allLanguages: string[]) {
   const invalidLanguages: string[] = []
   const validateLanguages = targets.filter(language => {

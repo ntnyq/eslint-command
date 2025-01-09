@@ -30,14 +30,14 @@ export const commands = {
  * Type union of all configs
  */
 export type ConfigKey = 
-  | "eslint-command.annotationColor"
+  | "eslint-command.annotation"
   | "eslint-command.commands"
   | "eslint-command.completion"
   | "eslint-command.enable"
   | "eslint-command.languages"
 
 export interface ConfigKeyTypeMap {
-  "eslint-command.annotationColor": string,
+  "eslint-command.annotation": { 'before': { 'contentText': string; 'margin': string }; 'color': string; 'cursor': string },
   "eslint-command.commands": { 'commentType': ("block" | "both" | "line"); 'description': string; 'name': string; 'triggers': string[]; 'url': string }[],
   "eslint-command.completion": boolean,
   "eslint-command.enable": boolean,
@@ -45,7 +45,7 @@ export interface ConfigKeyTypeMap {
 }
 
 export interface ConfigShorthandMap {
-  annotationColor: "eslint-command.annotationColor",
+  annotation: "eslint-command.annotation",
   commands: "eslint-command.commands",
   completion: "eslint-command.completion",
   enable: "eslint-command.enable",
@@ -53,7 +53,7 @@ export interface ConfigShorthandMap {
 }
 
 export interface ConfigShorthandTypeMap {
-  annotationColor: string,
+  annotation: { 'before': { 'contentText': string; 'margin': string }; 'color': string; 'cursor': string },
   commands: { 'commentType': ("block" | "both" | "line"); 'description': string; 'name': string; 'triggers': string[]; 'url': string }[],
   completion: boolean,
   enable: boolean,
@@ -71,15 +71,15 @@ export interface ConfigItem<T extends keyof ConfigKeyTypeMap> {
  */
 export const configs = {
   /**
-   * Color of annotation
-   * @key `eslint-command.annotationColor`
-   * @default `"rgb(255, 189, 42)"`
-   * @type `string`
+   * ESLint command annotation
+   * @key `eslint-command.annotation`
+   * @default `{ "before": { "contentText": "🚀", "margin": "0 0.5em 0 0" }, "color": "rgb(255, 189, 42)", "cursor": "pointer" }`
+   * @type `object`
    */
-  annotationColor: {
-    key: "eslint-command.annotationColor",
-    default: "rgb(255, 189, 42)",
-  } as ConfigItem<"eslint-command.annotationColor">,
+  annotation: {
+    key: "eslint-command.annotation",
+    default: { "before": { "contentText": "🚀", "margin": "0 0.5em 0 0" }, "color": "rgb(255, 189, 42)", "cursor": "pointer" },
+  } as ConfigItem<"eslint-command.annotation">,
   /**
    * User custom commands
    * @key `eslint-command.commands`
@@ -123,7 +123,7 @@ export const configs = {
 }
 
 export interface ScopedConfigKeyTypeMap {
-  "annotationColor": string,
+  "annotation": { 'before': { 'contentText': string; 'margin': string }; 'color': string; 'cursor': string },
   "commands": { 'commentType': ("block" | "both" | "line"); 'description': string; 'name': string; 'triggers': string[]; 'url': string }[],
   "completion": boolean,
   "enable": boolean,
@@ -133,7 +133,7 @@ export interface ScopedConfigKeyTypeMap {
 export const scopedConfigs = {
   scope: "eslint-command",
   defaults: {
-    "annotationColor": "rgb(255, 189, 42)",
+    "annotation": { "before": { "contentText": "🚀", "margin": "0 0.5em 0 0" }, "color": "rgb(255, 189, 42)", "cursor": "pointer" },
     "commands": [],
     "completion": true,
     "enable": true,
@@ -143,7 +143,7 @@ export const scopedConfigs = {
 
 export interface NestedConfigs {
   "eslint-command": {
-    "annotationColor": string,
+    "annotation": { 'before': { 'contentText': string; 'margin': string }; 'color': string; 'cursor': string },
     "commands": { 'commentType': ("block" | "both" | "line"); 'description': string; 'name': string; 'triggers': string[]; 'url': string }[],
     "completion": boolean,
     "enable": boolean,
@@ -152,7 +152,7 @@ export interface NestedConfigs {
 }
 
 export interface NestedScopedConfigs {
-  "annotationColor": string,
+  "annotation": { 'before': { 'contentText': string; 'margin': string }; 'color': string; 'cursor': string },
   "commands": { 'commentType': ("block" | "both" | "line"); 'description': string; 'name': string; 'triggers': string[]; 'url': string }[],
   "completion": boolean,
   "enable": boolean,

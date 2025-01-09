@@ -30,13 +30,13 @@
 
 <!-- configs -->
 
-| Key                              | Description                             | Type      | Default                                                                      |
-| -------------------------------- | --------------------------------------- | --------- | ---------------------------------------------------------------------------- |
-| `eslint-command.annotationColor` | Color of annotation                     | `string`  | `"rgb(255, 189, 42)"`                                                        |
-| `eslint-command.commands`        | User custom commands                    | `array`   | `[]`                                                                         |
-| `eslint-command.completion`      | Enable completion                       | `boolean` | `true`                                                                       |
-| `eslint-command.enable`          | Enable extension                        | `boolean` | `true`                                                                       |
-| `eslint-command.languages`       | Languages to enable command decorations | `array`   | `["javascript","javascriptreact","markdown","typescript","typescriptreact"]` |
+| Key                         | Description                             | Type      | Default                                                                                                             |
+| --------------------------- | --------------------------------------- | --------- | ------------------------------------------------------------------------------------------------------------------- |
+| `eslint-command.annotation` | ESLint command annotation               | `object`  | `{ "before": { "contentText": "🚀", "margin": "0 0.5em 0 0" }, "color": "rgb(255, 189, 42)", "cursor": "pointer" }` |
+| `eslint-command.commands`   | User custom commands                    | `array`   | `[]`                                                                                                                |
+| `eslint-command.completion` | Enable completion                       | `boolean` | `true`                                                                                                              |
+| `eslint-command.enable`     | Enable extension                        | `boolean` | `true`                                                                                                              |
+| `eslint-command.languages`  | Languages to enable command decorations | `array`   | `["javascript","javascriptreact","markdown","typescript","typescriptreact"]`                                        |
 
 <!-- configs -->
 

@@ -8,18 +8,19 @@ import {
 } from 'reactive-vscode'
 import { DecorationRangeBehavior, Range, window } from 'vscode'
 import { useESLintCommands } from '../composables/commands'
-import { config, getLanguageIds } from '../config'
+import { config, DEFAULT_ANNOTATION, getLanguageIds } from '../config'
 import { getCommandMarkdown, logger } from '../utils'
 import type { DecorationMatch } from '../types'
 
 export async function useAnnotations() {
   const BuiltInDecoration = window.createTextEditorDecorationType({
     rangeBehavior: DecorationRangeBehavior.ClosedClosed,
-    color: config.annotationColor,
-    after: {
-      contentText: '🚀',
-      margin: '0 0 0 0.5em',
+    color: config.annotation?.color || DEFAULT_ANNOTATION.color,
+    before: {
+      contentText: config.annotation?.before?.contentText || DEFAULT_ANNOTATION.before.contentText,
+      margin: config.annotation?.before?.margin || DEFAULT_ANNOTATION.before.margin,
     },
+    cursor: config.annotation.cursor || DEFAULT_ANNOTATION.cursor,
   })
   const editor = useActiveTextEditor()
   const text = useDocumentText(() => editor.value?.document)
