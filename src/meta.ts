@@ -4,7 +4,7 @@
 // Meta info
 export const publisher = "ntnyq"
 export const name = "eslint-command"
-export const version = "0.0.6"
+export const version = "0.0.7"
 export const displayName = "ESLint Command"
 export const description = "VSCode support for eslint-plugin-command"
 export const extensionId = `${publisher}.${name}`
