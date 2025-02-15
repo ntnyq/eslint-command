@@ -17,8 +17,11 @@ export async function useAnnotations() {
     rangeBehavior: DecorationRangeBehavior.ClosedClosed,
     color: config.annotation?.color || DEFAULT_ANNOTATION.color,
     before: {
-      contentText: config.annotation?.before?.contentText || DEFAULT_ANNOTATION.before.contentText,
-      margin: config.annotation?.before?.margin || DEFAULT_ANNOTATION.before.margin,
+      contentText:
+        config.annotation?.before?.contentText
+        || DEFAULT_ANNOTATION.before.contentText,
+      margin:
+        config.annotation?.before?.margin || DEFAULT_ANNOTATION.before.margin,
     },
     cursor: config.annotation.cursor || DEFAULT_ANNOTATION.cursor,
   })
@@ -59,9 +62,13 @@ export async function useAnnotations() {
         if (!editor.value) continue
 
         const startPos = editor.value.document.positionAt(match.index)
-        const endPos = editor.value.document.positionAt(match.index + match[0].length)
+        const endPos = editor.value.document.positionAt(
+          match.index + match[0].length,
+        )
 
-        logger.info(`🔍 Found ${command.name} at ${startPos.line}:${startPos.character}`)
+        logger.info(
+          `🔍 Found ${command.name} at ${startPos.line}:${startPos.character}`,
+        )
 
         keys.push([new Range(startPos, endPos), command.name])
       }

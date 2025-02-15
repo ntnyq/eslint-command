@@ -37,8 +37,8 @@ export type ConfigKey =
   | "eslint-command.languages"
 
 export interface ConfigKeyTypeMap {
-  "eslint-command.annotation": { 'before': { 'contentText': string; 'margin': string }; 'color': string; 'cursor': string },
-  "eslint-command.commands": { 'commentType': ("block" | "both" | "line"); 'description': string; 'name': string; 'triggers': string[]; 'url': string }[],
+  "eslint-command.annotation": { 'before'?: { 'contentText'?: string; 'margin'?: string }; 'color'?: string; 'cursor'?: string },
+  "eslint-command.commands": { 'commentType'?: ("block" | "both" | "line"); 'description': string; 'name': string; 'triggers': string[]; 'url'?: string }[],
   "eslint-command.completion": boolean,
   "eslint-command.enable": boolean,
   "eslint-command.languages": string[],
@@ -53,8 +53,8 @@ export interface ConfigShorthandMap {
 }
 
 export interface ConfigShorthandTypeMap {
-  annotation: { 'before': { 'contentText': string; 'margin': string }; 'color': string; 'cursor': string },
-  commands: { 'commentType': ("block" | "both" | "line"); 'description': string; 'name': string; 'triggers': string[]; 'url': string }[],
+  annotation: { 'before'?: { 'contentText'?: string; 'margin'?: string }; 'color'?: string; 'cursor'?: string },
+  commands: { 'commentType'?: ("block" | "both" | "line"); 'description': string; 'name': string; 'triggers': string[]; 'url'?: string }[],
   completion: boolean,
   enable: boolean,
   languages: string[],
@@ -123,8 +123,8 @@ export const configs = {
 }
 
 export interface ScopedConfigKeyTypeMap {
-  "annotation": { 'before': { 'contentText': string; 'margin': string }; 'color': string; 'cursor': string },
-  "commands": { 'commentType': ("block" | "both" | "line"); 'description': string; 'name': string; 'triggers': string[]; 'url': string }[],
+  "annotation": { 'before'?: { 'contentText'?: string; 'margin'?: string }; 'color'?: string; 'cursor'?: string },
+  "commands": { 'commentType'?: ("block" | "both" | "line"); 'description': string; 'name': string; 'triggers': string[]; 'url'?: string }[],
   "completion": boolean,
   "enable": boolean,
   "languages": string[],
@@ -143,8 +143,8 @@ export const scopedConfigs = {
 
 export interface NestedConfigs {
   "eslint-command": {
-    "annotation": { 'before': { 'contentText': string; 'margin': string }; 'color': string; 'cursor': string },
-    "commands": { 'commentType': ("block" | "both" | "line"); 'description': string; 'name': string; 'triggers': string[]; 'url': string }[],
+    "annotation": { 'before'?: { 'contentText'?: string; 'margin'?: string }; 'color'?: string; 'cursor'?: string },
+    "commands": { 'commentType'?: ("block" | "both" | "line"); 'description': string; 'name': string; 'triggers': string[]; 'url'?: string }[],
     "completion": boolean,
     "enable": boolean,
     "languages": string[],
@@ -152,8 +152,8 @@ export interface NestedConfigs {
 }
 
 export interface NestedScopedConfigs {
-  "annotation": { 'before': { 'contentText': string; 'margin': string }; 'color': string; 'cursor': string },
-  "commands": { 'commentType': ("block" | "both" | "line"); 'description': string; 'name': string; 'triggers': string[]; 'url': string }[],
+  "annotation": { 'before'?: { 'contentText'?: string; 'margin'?: string }; 'color'?: string; 'cursor'?: string },
+  "commands": { 'commentType'?: ("block" | "both" | "line"); 'description': string; 'name': string; 'triggers': string[]; 'url'?: string }[],
   "completion": boolean,
   "enable": boolean,
   "languages": string[],

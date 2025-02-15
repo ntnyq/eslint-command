@@ -32,7 +32,9 @@ async function validateLanguages(targets: string[], allLanguages: string[]) {
   })
 
   if (invalidLanguages.length) {
-    window.showWarningMessage(`Invalid language(s): ${invalidLanguages.join(', ')}`)
+    window.showWarningMessage(
+      `Invalid language(s): ${invalidLanguages.join(', ')}`,
+    )
   }
 
   return validateLanguages

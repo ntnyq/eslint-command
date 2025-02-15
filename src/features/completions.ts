@@ -26,7 +26,11 @@ enum CommandTrigger {
 class ESLintCommandCompletionItem extends CompletionItem {
   eslintCommand: ESLintCommand
 
-  constructor(label: string, kind: CompletionItemKind, eslintCommand: ESLintCommand) {
+  constructor(
+    label: string,
+    kind: CompletionItemKind,
+    eslintCommand: ESLintCommand,
+  ) {
     super(label, kind)
     this.eslintCommand = eslintCommand
   }
@@ -38,7 +42,13 @@ function getMarkdown(eslintCommand: ESLintCommand) {
   )
 }
 
-function getCompletionList({ replaced, lineText }: { replaced: string; lineText: string }) {
+function getCompletionList({
+  replaced,
+  lineText,
+}: {
+  replaced: string
+  lineText: string
+}) {
   const { eslintCommands } = useESLintCommands()
 
   const completionList: ESLintCommandCompletionItem[] = []
@@ -78,14 +88,20 @@ const provider: CompletionItemProvider<ESLintCommandCompletionItem> = {
     const line = document.lineAt(position)
     const lineText = line.text.slice(0, Math.max(0, position.character))
 
-    if (lineText.startsWith('///') && context.triggerCharacter === CommandTrigger.SPACE) {
+    if (
+      lineText.startsWith('///')
+      && context.triggerCharacter === CommandTrigger.SPACE
+    ) {
       return getCompletionList({
         replaced: `///${CommandTrigger.SPACE}`,
         lineText,
       })
     }
 
-    if (lineText.startsWith('// @') && context.triggerCharacter === CommandTrigger.AT) {
+    if (
+      lineText.startsWith('// @')
+      && context.triggerCharacter === CommandTrigger.AT
+    ) {
       return getCompletionList({
         replaced: `// ${CommandTrigger.AT}`,
         lineText,

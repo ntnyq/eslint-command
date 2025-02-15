@@ -33,7 +33,8 @@ export function useCommands() {
       return logger.info('No command selected')
     }
 
-    const trigger = eslintCommands.value.find(c => c.name === command.label)?.triggers?.[0]
+    const trigger = eslintCommands.value.find(c => c.name === command.label)
+      ?.triggers?.[0]
 
     if (!trigger) {
       return logger.warn('No trigger found')

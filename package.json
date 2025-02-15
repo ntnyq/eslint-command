@@ -6,7 +6,7 @@
   "type": "commonjs",
   "version": "0.0.6",
   "private": true,
-  "packageManager": "pnpm@9.15.5",
+  "packageManager": "pnpm@10.4.0",
   "description": "VSCode support for eslint-plugin-command",
   "keywords": [
     "eslint-command"
@@ -51,17 +51,17 @@
     "reactive-vscode": "^0.2.10"
   },
   "devDependencies": {
-    "@ntnyq/eslint-config": "^3.12.3",
-    "@ntnyq/prettier-config": "^1.22.1",
-    "@types/node": "^22.13.0",
-    "@types/vscode": "^1.96.0",
+    "@ntnyq/eslint-config": "^4.0.0-beta.4",
+    "@ntnyq/prettier-config": "^2.0.0-beta.2",
+    "@types/node": "^22.13.4",
+    "@types/vscode": "^1.97.0",
     "@vscode/vsce": "^3.2.2",
-    "bumpp": "^10.0.1",
-    "eslint": "^9.19.0",
+    "bumpp": "^10.0.3",
+    "eslint": "^9.20.1",
     "husky": "^9.1.7",
     "nano-staged": "^0.8.0",
     "npm-run-all2": "^7.0.2",
-    "pnpm": "^9.15.5",
+    "pnpm": "^10.4.0",
     "prettier": "3.4.2",
     "tsup": "^8.3.6",
     "tsx": "^4.19.2",
@@ -150,6 +150,7 @@
                     "to-for-each",
                     "to-for-of",
                     "to-function",
+                    "to-one-line",
                     "to-promise-all",
                     "to-string-literal",
                     "to-template-literal",
@@ -216,7 +217,15 @@
     "Other"
   ],
   "engines": {
-    "vscode": "^1.96.4"
+    "vscode": "^1.97.0"
+  },
+  "pnpm": {
+    "onlyBuiltDependencies": [
+      "esbuild"
+    ],
+    "overrides": {
+      "esbuild": "^0.25.0"
+    }
   },
   "nano-staged": {
     "*.{js,ts,mjs,cjs,md,json,yml,yaml}": "eslint --fix"
