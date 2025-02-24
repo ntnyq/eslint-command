@@ -50,22 +50,22 @@
     "reactive-vscode": "^0.2.10"
   },
   "devDependencies": {
-    "@ntnyq/eslint-config": "^4.0.0-beta.6",
+    "@ntnyq/eslint-config": "^4.0.0-beta.8",
     "@ntnyq/prettier-config": "^2.0.0",
-    "@types/node": "^22.13.4",
+    "@types/node": "^22.13.5",
     "@types/vscode": "^1.97.0",
     "@vscode/vsce": "^3.2.2",
     "bumpp": "^10.0.3",
-    "eslint": "^9.20.1",
+    "eslint": "^9.21.0",
     "husky": "^9.1.7",
     "nano-staged": "^0.8.0",
     "npm-run-all2": "^7.0.2",
     "pnpm": "^10.4.1",
-    "prettier": "3.5.1",
+    "prettier": "3.5.2",
     "tsup": "^8.3.6",
-    "tsx": "^4.19.2",
+    "tsx": "^4.19.3",
     "typescript": "^5.7.3",
-    "vscode-ext-gen": "^1.0.0"
+    "vscode-ext-gen": "^1.0.2"
   },
   "activationEvents": [
     "onStartupFinished"
