@@ -18,10 +18,10 @@ import type {
 } from 'vscode'
 import type { ESLintCommand } from '../types'
 
-enum CommandTrigger {
-  SPACE = ' ',
-  AT = '@',
-}
+const CommandTrigger = Object.freeze({
+  SPACE: ' ',
+  AT: '@',
+})
 
 class ESLintCommandCompletionItem extends CompletionItem {
   eslintCommand: ESLintCommand

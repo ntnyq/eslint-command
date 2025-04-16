@@ -6,7 +6,7 @@
   "type": "commonjs",
   "version": "0.0.7",
   "private": true,
-  "packageManager": "pnpm@10.8.0",
+  "packageManager": "pnpm@10.8.1",
   "description": "VSCode support for eslint-plugin-command",
   "keywords": [
     "eslint-command"
@@ -35,7 +35,7 @@
     "build": "tsup",
     "dev": "NODE_ENV=development tsup --watch",
     "generate:meta": "vscode-ext-gen --output src/meta.ts",
-    "lint": "eslint .",
+    "lint": "eslint",
     "pack": "vsce package --no-dependencies",
     "prepare": "husky",
     "release": "run-s release:check release:version release:publish",
@@ -50,7 +50,7 @@
     "reactive-vscode": "^0.2.14"
   },
   "devDependencies": {
-    "@ntnyq/eslint-config": "^4.0.3",
+    "@ntnyq/eslint-config": "^4.0.4",
     "@ntnyq/prettier-config": "^2.0.0",
     "@types/node": "^22.14.1",
     "@types/vscode": "^1.99.1",
@@ -60,10 +60,9 @@
     "husky": "^9.1.7",
     "nano-staged": "^0.8.0",
     "npm-run-all2": "^7.0.2",
-    "pnpm": "^10.8.0",
+    "pnpm": "^10.8.1",
     "prettier": "3.5.3",
     "tsup": "^8.4.0",
-    "tsx": "^4.19.3",
     "typescript": "^5.8.3",
     "vscode-ext-gen": "^1.0.2"
   },
@@ -218,17 +217,7 @@
   "engines": {
     "vscode": "^1.99.2"
   },
-  "pnpm": {
-    "onlyBuiltDependencies": [
-      "@vscode/vsce-sign",
-      "esbuild",
-      "keytar"
-    ],
-    "overrides": {
-      "esbuild": "^0.25.2"
-    }
-  },
   "nano-staged": {
-    "*.{js,ts,mjs,cjs,md,json,yml,yaml}": "eslint --fix"
+    "*.{js,ts,mjs,cjs,md,yml,yaml,json}": "eslint --fix"
   }
 }

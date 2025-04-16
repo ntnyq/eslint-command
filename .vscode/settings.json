@@ -11,8 +11,9 @@
   },
   "eslint.validate": [
     "vue",
-    "json",
     "toml",
+    "yaml",
+    "json",
     "jsonc",
     "json5",
     "markdown",
@@ -24,6 +25,7 @@
   "cSpell.words": [
     "bumpp",
     "changelogithub",
+    "esbuild",
     "forof",
     "hreg",
     "npmrc",

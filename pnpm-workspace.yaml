@@ -1,0 +1,9 @@
+packages:
+  - .
+  - playground
+overrides:
+  esbuild: ^0.25.2
+onlyBuiltDependencies:
+  - '@vscode/vsce-sign'
+  - esbuild
+  - keytar
