@@ -31,7 +31,8 @@
     "npmrc",
     "ofetch",
     "pnpm",
-    "tsup"
+    "tsdown",
+    "unrs"
   ],
   "emeraldwalk.runonsave": {
     "commands": [
