@@ -47,12 +47,12 @@
     "vscode:prepublish": "pnpm run build"
   },
   "dependencies": {
-    "reactive-vscode": "^0.2.14"
+    "reactive-vscode": "^0.2.16"
   },
   "devDependencies": {
     "@ntnyq/eslint-config": "^4.2.0",
     "@ntnyq/prettier-config": "^2.0.0",
-    "@types/node": "^22.15.16",
+    "@types/node": "^22.15.17",
     "@types/vscode": "^1.99.1",
     "@vscode/vsce": "^3.3.2",
     "bumpp": "^10.1.0",
@@ -215,7 +215,7 @@
     "Other"
   ],
   "engines": {
-    "vscode": "^1.99.3"
+    "vscode": "^1.100.0"
   },
   "nano-staged": {
     "*.{js,ts,mjs,cjs,md,yml,yaml,json}": "eslint --fix"
