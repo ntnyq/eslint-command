@@ -3,7 +3,7 @@
   "name": "eslint-command",
   "displayName": "ESLint Command",
   "preview": true,
-  "type": "commonjs",
+  "type": "module",
   "version": "0.0.7",
   "private": true,
   "packageManager": "pnpm@10.10.0",
