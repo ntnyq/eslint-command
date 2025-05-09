@@ -12,8 +12,8 @@ importers:
   .:
     dependencies:
       reactive-vscode:
-        specifier: ^0.2.14
-        version: 0.2.14(@types/vscode@1.99.1)
+        specifier: ^0.2.16
+        version: 0.2.16(@types/vscode@1.99.1)
     devDependencies:
       '@ntnyq/eslint-config':
         specifier: ^4.2.0
@@ -22,8 +22,8 @@ importers:
         specifier: ^2.0.0
         version: 2.0.0
       '@types/node':
-        specifier: ^22.15.16
-        version: 22.15.16
+        specifier: ^22.15.17
+        version: 22.15.17
       '@types/vscode':
         specifier: ^1.99.1
         version: 1.99.1
@@ -381,8 +381,8 @@ packages:
     resolution: {integrity: sha512-ezIadUb1aFhwJLd++WVqVpi9rnlX8vnd4ju7saPhwLHJN1mJgOv0puePTGV+FbtSnWtwoHDT8lAm4kagDZmpCg==}
     engines: {node: '>=20.0.0'}
 
-  '@reactive-vscode/reactivity@0.2.14':
-    resolution: {integrity: sha512-Rb3+kBX9A55C+4OKqVe4XGWtG7eGWo+E/8n0eSmbpmOEdZq3r5+SNEfEe3U0OdaCMT2r59R6kkK2QVfZpdBKhA==}
+  '@reactive-vscode/reactivity@0.2.16':
+    resolution: {integrity: sha512-wjDC1uIPoWEh6tGTNEjNDmB8P70RKkfsKdp1eIy9VHepQoXYYPoNvW3UfZv1F1YMWvpnQX55eUOrahTzzUlFAw==}
 
   '@rolldown/binding-darwin-arm64@1.0.0-beta.8-commit.534fde3':
     resolution: {integrity: sha512-I5dN4pf0VZTWNOZluLKvNiCJTPK6kHfvaPNEXE4o2V/o+yUarqIYpjKfz4enQMQyzoKXUkFs9Y8lhMtL32BJZA==}
@@ -465,8 +465,8 @@ packages:
   '@types/ms@2.1.0':
     resolution: {integrity: sha512-GsCCIZDE/p3i96vtEqx+7dBUGXrc7zeSK3wwPHIaRThS+9OhWIXRqzs4d6k1SVU8g91DrNRWxWUGhp5KXQb2VA==}
 
-  '@types/node@22.15.16':
-    resolution: {integrity: sha512-3pr+KjwpVujqWqOKT8mNR+rd09FqhBLwg+5L/4t0cNYBzm/yEiYGCxWttjaPBsLtAo+WFNoXzGJfolM1JuRXoA==}
+  '@types/node@22.15.17':
+    resolution: {integrity: sha512-wIX2aSZL5FE+MR0JlvF87BNVrtFWf6AE6rxSE9X7OwnVvoyCQjpzSRJ+M87se/4QCkCiebQAqrJ0y6fwIyi7nw==}
 
   '@types/unist@3.0.3':
     resolution: {integrity: sha512-ko/gIFJRv177XgZsZcBwnqJN5x/Gien8qNOn0D5bQU/zAzVf9Zt3BlcUiLqhV9y4ARk0GbT3tnUiPNgnTXzc/Q==}
@@ -2327,8 +2327,8 @@ packages:
     resolution: {integrity: sha512-y3bGgqKj3QBdxLbLkomlohkvsA8gdAiUQlSBJnBhfn+BPxg4bc62d8TcBW15wavDfgexCgccckhcZvywyQYPOw==}
     hasBin: true
 
-  reactive-vscode@0.2.14:
-    resolution: {integrity: sha512-F4HgF9gDwGZJPTglGjxspJNWrYeOMLDyeFSccOMjfB6CWXoQWpw7WrcPb61wuMuNDbHi+5Txn9DIY1GfmV3pGw==}
+  reactive-vscode@0.2.16:
+    resolution: {integrity: sha512-05PSW0vZ6vu/WXB4jo7+SstJfTbLsb8vzWy/RID3O97j010qsjnD4vnE3nTjHcCzMZJypD9X/wpDrEF19jpj3A==}
     peerDependencies:
       '@types/vscode': ^1.89.0
 
@@ -3218,7 +3218,7 @@ snapshots:
     dependencies:
       quansync: 0.2.10
 
-  '@reactive-vscode/reactivity@0.2.14': {}
+  '@reactive-vscode/reactivity@0.2.16': {}
 
   '@rolldown/binding-darwin-arm64@1.0.0-beta.8-commit.534fde3':
     optional: true
@@ -3282,7 +3282,7 @@ snapshots:
 
   '@types/ms@2.1.0': {}
 
-  '@types/node@22.15.16':
+  '@types/node@22.15.17':
     dependencies:
       undici-types: 6.21.0
 
@@ -5462,9 +5462,9 @@ snapshots:
       strip-json-comments: 2.0.1
     optional: true
 
-  reactive-vscode@0.2.14(@types/vscode@1.99.1):
+  reactive-vscode@0.2.16(@types/vscode@1.99.1):
     dependencies:
-      '@reactive-vscode/reactivity': 0.2.14
+      '@reactive-vscode/reactivity': 0.2.16
       '@types/vscode': 1.99.1
 
   read-package-json-fast@4.0.0:
