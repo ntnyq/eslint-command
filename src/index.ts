@@ -1,5 +1,5 @@
 import { defineExtension } from 'reactive-vscode'
-import { version } from '../package.json'
+import { version } from '../package.json' with { type: 'json' }
 import { config } from './config'
 import { useAnnotations } from './features/annotations'
 import { useCommands } from './features/commands'

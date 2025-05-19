@@ -12,11 +12,11 @@ export const extensionId = `${publisher}.${name}`
 /**
  * Type union of all commands
  */
-export type CommandKey = 
+export type CommandKey =
   | "eslint-command.insert-command"
 
 /**
- * Commands map registed by `ntnyq.eslint-command`
+ * Commands map registered by `ntnyq.eslint-command`
  */
 export const commands = {
   /**
@@ -29,7 +29,7 @@ export const commands = {
 /**
  * Type union of all configs
  */
-export type ConfigKey = 
+export type ConfigKey =
   | "eslint-command.annotation"
   | "eslint-command.commands"
   | "eslint-command.completion"

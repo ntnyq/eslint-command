@@ -8,7 +8,7 @@
     "resolveJsonModule": true,
     "erasableSyntaxOnly": true,
     "libReplacement": false,
-    "sourceMap": true,
+    "sourceMap": false,
     "isolatedModules": true,
     "verbatimModuleSyntax": true,
     "esModuleInterop": true,
