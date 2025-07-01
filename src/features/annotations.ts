@@ -37,8 +37,7 @@ export async function useAnnotations() {
 
   useActiveEditorDecorations(BuiltInDecoration, decorations)
 
-  // Calculate decorations
-  watchEffect(() => {
+  function updateDecorations() {
     if (!editor.value || !text.value || !languageId.value) {
       decorations.value = []
       return
@@ -59,7 +58,9 @@ export async function useAnnotations() {
       regexp.lastIndex = 0
 
       while ((match = regexp.exec(text.value!))) {
-        if (!editor.value) continue
+        if (!editor.value) {
+          continue
+        }
 
         const startPos = editor.value.document.positionAt(match.index)
         const endPos = editor.value.document.positionAt(
@@ -83,6 +84,11 @@ export async function useAnnotations() {
 
       return item
     })
+  }
+
+  // Calculate decorations
+  watchEffect(() => {
+    updateDecorations()
   })
 
   watchEffect(async () => {
