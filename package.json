@@ -215,7 +215,7 @@
     "Other"
   ],
   "engines": {
-    "vscode": "^1.102.0"
+    "vscode": "^1.102.1"
   },
   "nano-staged": {
     "*.{js,ts,mjs,cjs,md,yml,yaml,json}": "eslint --fix"
