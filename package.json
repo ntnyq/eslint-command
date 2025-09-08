@@ -61,7 +61,7 @@
     "nano-staged": "^0.8.0",
     "npm-run-all2": "^8.0.4",
     "prettier": "3.6.2",
-    "tsdown": "^0.14.1",
+    "tsdown": "^0.14.2",
     "typescript": "^5.9.2",
     "vscode-ext-gen": "^1.1.0"
   },
@@ -214,7 +214,7 @@
     "Other"
   ],
   "engines": {
-    "vscode": "^1.103.1"
+    "vscode": "^1.103.2"
   },
   "nano-staged": {
     "*.{js,ts,mjs,cjs,md,yml,yaml,json}": "eslint --fix"
