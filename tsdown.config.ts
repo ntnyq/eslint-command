@@ -9,6 +9,7 @@ export default defineConfig({
   entry: ['src/index.ts'],
   external: ['vscode'],
   minify: !isDev(),
+  platform: 'neutral',
   shims: true,
   sourcemap: isDev(),
   watch: isDev(),
