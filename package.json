@@ -6,7 +6,7 @@
   "type": "module",
   "version": "0.1.0",
   "private": true,
-  "packageManager": "pnpm@10.26.2",
+  "packageManager": "pnpm@10.27.0",
   "description": "VSCode support for eslint-plugin-command",
   "keywords": [
     "eslint-command"
@@ -51,7 +51,7 @@
     "reactive-vscode": "^0.4.1"
   },
   "devDependencies": {
-    "@ntnyq/eslint-config": "^5.8.0",
+    "@ntnyq/eslint-config": "^5.9.0",
     "@ntnyq/prettier-config": "^3.0.1",
     "@types/node": "^25.0.3",
     "@types/vscode": "^1.107.0",
@@ -62,7 +62,7 @@
     "nano-staged": "^0.9.0",
     "npm-run-all2": "^8.0.4",
     "prettier": "3.7.4",
-    "tsdown": "^0.18.3",
+    "tsdown": "^0.18.4",
     "typescript": "^5.9.3",
     "vscode-ext-gen": "^1.5.1"
   },
