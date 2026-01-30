@@ -1,13 +1,10 @@
-import { defineConfigObject } from 'reactive-vscode'
+import { defineConfig } from 'reactive-vscode'
 import { languages, window } from 'vscode'
 import { defaultLanguageIds } from './constants'
 import { scopedConfigs } from './meta'
 import type { ScopedConfigKeyTypeMap } from './meta'
 
-export const config = defineConfigObject<ScopedConfigKeyTypeMap>(
-  scopedConfigs.scope,
-  scopedConfigs.defaults,
-)
+export const config = defineConfig<ScopedConfigKeyTypeMap>(scopedConfigs.scope)
 
 /**
  * default style for annotation

@@ -8,6 +8,7 @@ export default defineConfig({
   clean: true,
   entry: ['src/index.ts'],
   external: ['vscode'],
+  inlineOnly: ['reactive-vscode', '@reactive-vscode/reactivity', 'ohash'],
   minify: !isDev(),
   platform: 'neutral',
   shims: true,

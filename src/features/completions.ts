@@ -89,8 +89,8 @@ const provider: CompletionItemProvider<ESLintCommandCompletionItem> = {
     const lineText = line.text.slice(0, Math.max(0, position.character))
 
     if (
-      lineText.startsWith('///')
-      && context.triggerCharacter === CommandTrigger.SPACE
+      lineText.startsWith('///') &&
+      context.triggerCharacter === CommandTrigger.SPACE
     ) {
       return getCompletionList({
         replaced: `///${CommandTrigger.SPACE}`,
@@ -99,8 +99,8 @@ const provider: CompletionItemProvider<ESLintCommandCompletionItem> = {
     }
 
     if (
-      lineText.startsWith('// @')
-      && context.triggerCharacter === CommandTrigger.AT
+      lineText.startsWith('// @') &&
+      context.triggerCharacter === CommandTrigger.AT
     ) {
       return getCompletionList({
         replaced: `// ${CommandTrigger.AT}`,

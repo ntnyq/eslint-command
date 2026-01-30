@@ -12,6 +12,6 @@ export function getCommandMarkdown(name: string) {
   }
 
   return new MarkdownString(
-    `#### [eslint-plugin-command](https://eslint-plugin-command.antfu.me)\n\n[${name}](${command.url || createDocsUrl(name)})\n\n${command.description}`,
+    `#### 📦 [eslint-plugin-command](https://eslint-plugin-command.antfu.me)\n\n⚙️ [${name}](${command.url || createDocsUrl(name)})\n\n📄${command.description}`,
   )
 }

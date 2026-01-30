@@ -3,9 +3,9 @@ import {
   computed,
   ref,
   shallowRef,
-  useActiveEditorDecorations,
   useActiveTextEditor,
   useDocumentText,
+  useEditorDecorations,
   watch,
   watchEffect,
 } from 'reactive-vscode'
@@ -21,8 +21,8 @@ export async function useAnnotations() {
     color: config.annotation?.color || DEFAULT_ANNOTATION.color,
     before: {
       contentText:
-        config.annotation?.before?.contentText
-        || DEFAULT_ANNOTATION.before.contentText,
+        config.annotation?.before?.contentText ||
+        DEFAULT_ANNOTATION.before.contentText,
       margin:
         config.annotation?.before?.margin || DEFAULT_ANNOTATION.before.margin,
     },
@@ -45,7 +45,7 @@ export async function useAnnotations() {
   let debounceTimer: ReturnType<typeof setTimeout> | null = null
   const DEBOUNCE_DELAY = 300 // 300ms debounce delay
 
-  useActiveEditorDecorations(BuiltInDecoration, decorations)
+  useEditorDecorations(editor, BuiltInDecoration, decorations)
 
   function updateDecorations() {
     if (!editor.value || !text.value || !languageId.value) {
@@ -65,8 +65,8 @@ export async function useAnnotations() {
 
     // If the text content and language haven't changed significantly, skip the update
     if (
-      lastTextHash.value === currentTextHash
-      && lastLanguageId.value === currentLanguageId
+      lastTextHash.value === currentTextHash &&
+      lastLanguageId.value === currentLanguageId
     ) {
       return
     }
