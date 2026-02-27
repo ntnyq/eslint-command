@@ -6,7 +6,7 @@
   "type": "module",
   "version": "0.1.0",
   "private": true,
-  "packageManager": "pnpm@10.28.2",
+  "packageManager": "pnpm@10.30.3",
   "description": "VSCode support for eslint-plugin-command",
   "keywords": [
     "eslint-command"
@@ -37,7 +37,7 @@
     "format": "oxfmt",
     "format:check": "oxfmt --check",
     "generate:meta": "vscode-ext-gen --output src/meta.ts",
-    "lint": "eslint",
+    "lint": "oxlint",
     "pack": "vsce package --no-dependencies",
     "prepare": "husky",
     "release": "run-s release:check release:version release:publish",
@@ -53,20 +53,19 @@
     "reactive-vscode": "^1.0.0-beta.2"
   },
   "devDependencies": {
-    "@ntnyq/eslint-config": "^6.0.0-beta.7",
-    "@types/node": "^25.2.0",
+    "@types/node": "^25.3.2",
     "@types/vscode": "^1.109.0",
-    "@typescript/native-preview": "^7.0.0-dev.20260204.1",
+    "@typescript/native-preview": "^7.0.0-dev.20260226.1",
     "@vscode/vsce": "^3.7.1",
-    "bumpp": "^10.4.0",
-    "eslint": "^9.39.2",
+    "bumpp": "^10.4.1",
     "husky": "^9.1.7",
     "nano-staged": "^0.9.0",
     "npm-run-all2": "^8.0.4",
-    "oxfmt": "^0.28.0",
-    "tsdown": "^0.20.2",
+    "oxfmt": "^0.35.0",
+    "oxlint": "^1.50.0",
+    "tsdown": "^0.21.0-beta.2",
     "typescript": "^5.9.3",
-    "vscode-ext-gen": "^1.5.1"
+    "vscode-ext-gen": "^1.6.0"
   },
   "activationEvents": [
     "onStartupFinished"
@@ -220,7 +219,7 @@
     "vscode": "^1.109.0"
   },
   "nano-staged": {
-    "*.{js,ts,mjs,md,yml,yaml,json}": "eslint --fix",
+    "*.{js,ts,mjs,tsx}": "oxlint --fix",
     "*": "oxfmt --no-error-on-unmatched-pattern"
   }
 }

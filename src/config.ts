@@ -18,9 +18,9 @@ export const DEFAULT_ANNOTATION = {
   cursor: 'pointer',
 }
 
-async function validateLanguages(targets: string[], allLanguages: string[]) {
+function validateLanguages(targets: string[], allLanguages: string[]) {
   const invalidLanguages: string[] = []
-  const validateLanguages = targets.filter(language => {
+  const validLanguages = targets.filter(language => {
     if (!allLanguages.includes(language)) {
       invalidLanguages.push(language)
       return false
@@ -34,7 +34,7 @@ async function validateLanguages(targets: string[], allLanguages: string[]) {
     )
   }
 
-  return validateLanguages
+  return validLanguages
 }
 
 export async function getLanguageIds() {
@@ -46,7 +46,7 @@ export async function getLanguageIds() {
       [
         ...defaultLanguageIds,
         // only valid languages
-        ...(await validateLanguages(languageIds, allLanguages)),
+        ...validateLanguages(languageIds, allLanguages),
       ].filter(language => allLanguages.includes(language)),
     ),
   )

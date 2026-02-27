@@ -43,7 +43,9 @@ export const builtInCommands: ESLintCommand[] = [
       'Generate up-to-date [regex101](https://regex101.com) links for your RegExp patterns in jsdoc comments. Helps you test and inspect the RegExp easily.',
     triggers: [
       '// @regex101',
-      // TODO: support block comments
+      /**
+       * TODO: support block comments
+       */
       '/* @regex101 */',
     ],
   },

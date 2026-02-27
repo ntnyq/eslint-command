@@ -18,6 +18,8 @@ import type {
 } from 'vscode'
 import type { ESLintCommand } from '../types'
 
+const { eslintCommands } = useESLintCommands()
+
 const CommandTrigger = Object.freeze({
   SPACE: ' ',
   AT: '@',
@@ -49,8 +51,6 @@ function getCompletionList({
   replaced: string
   lineText: string
 }) {
-  const { eslintCommands } = useESLintCommands()
-
   const completionList: ESLintCommandCompletionItem[] = []
 
   eslintCommands.value.forEach(eslintCommand => {
@@ -74,14 +74,19 @@ function getCompletionList({
 }
 
 const provider: CompletionItemProvider<ESLintCommandCompletionItem> = {
-  provideCompletionItems(
+  async provideCompletionItems(
     document: TextDocument,
     position: Position,
-    token: CancellationToken,
+    _token: CancellationToken,
     context: CompletionContext,
   ) {
     if (!config.completion) {
       logger.info('Completion is disabled')
+      return
+    }
+
+    const supportedLanguages = await getLanguageIds()
+    if (!supportedLanguages.includes(document.languageId)) {
       return
     }
 
@@ -111,11 +116,12 @@ const provider: CompletionItemProvider<ESLintCommandCompletionItem> = {
 }
 
 export async function useCompletions() {
-  const ctx = extensionContext.value!
+  const ctx = extensionContext.value
+  const allLanguages = await languages.getLanguages()
 
-  ctx.subscriptions.push(
+  ctx?.subscriptions.push(
     languages.registerCompletionItemProvider(
-      await getLanguageIds(),
+      allLanguages,
       provider,
       CommandTrigger.SPACE,
       CommandTrigger.AT,

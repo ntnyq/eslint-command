@@ -1,7 +1,7 @@
 import { computed, useActiveTextEditor, useCommand } from 'reactive-vscode'
 import { SnippetString, window } from 'vscode'
 import { useESLintCommands } from '../composables/commands'
-import { config } from '../config'
+import { getLanguageIds } from '../config'
 import { commands } from '../meta'
 import { logger } from '../utils'
 
@@ -13,16 +13,18 @@ export function useCommands() {
     if (!languageId.value) {
       return logger.warn('No active editor')
     }
-    if (!config.languages.includes(languageId.value)) {
+
+    const supportedLanguages = await getLanguageIds()
+    if (!supportedLanguages.includes(languageId.value)) {
       return logger.info('Unsupported language')
     }
 
     const { eslintCommands } = useESLintCommands()
 
     const command = await window.showQuickPick(
-      eslintCommands.value.map(command => ({
-        label: command.name,
-        description: command.description,
+      eslintCommands.value.map(c => ({
+        label: c.name,
+        description: c.description,
       })),
       {
         canPickMany: false,

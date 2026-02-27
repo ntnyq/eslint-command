@@ -6,7 +6,7 @@ import { useCommands } from './features/commands'
 import { useCompletions } from './features/completions'
 import { logger } from './utils'
 
-const { activate, deactivate } = defineExtension(async () => {
+const { activate, deactivate } = defineExtension(() => {
   logger.info(`✅ Activated, v${version}`)
 
   if (!config.enable) {

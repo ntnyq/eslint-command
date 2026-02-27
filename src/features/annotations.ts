@@ -12,10 +12,10 @@ import {
 import { DecorationRangeBehavior, Range, window } from 'vscode'
 import { useESLintCommands } from '../composables/commands'
 import { config, DEFAULT_ANNOTATION, getLanguageIds } from '../config'
-import { getCommandMarkdown, logger } from '../utils'
+import { escapeRegExp, getCommandMarkdown, logger } from '../utils'
 import type { DecorationMatch } from '../types'
 
-export async function useAnnotations() {
+export function useAnnotations() {
   const BuiltInDecoration = window.createTextEditorDecorationType({
     rangeBehavior: DecorationRangeBehavior.ClosedClosed,
     color: config.annotation?.color || DEFAULT_ANNOTATION.color,
@@ -77,12 +77,19 @@ export async function useAnnotations() {
     const keys: [Range, string][] = []
 
     eslintCommands.value.forEach(command => {
-      const regexp = new RegExp(`${command.triggers.join('|')}`, 'g')
+      const regexp = new RegExp(
+        `${command.triggers.map(escapeRegExp).join('|')}`,
+        'g',
+      )
       let match: RegExpExecArray | null = null
 
       regexp.lastIndex = 0
 
-      while ((match = regexp.exec(text.value!))) {
+      if (!text.value) {
+        return
+      }
+
+      while ((match = regexp.exec(text.value))) {
         if (!editor.value) {
           continue
         }
