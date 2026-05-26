@@ -26,9 +26,9 @@ const CommandTrigger = Object.freeze({
 })
 
 class ESLintCommandCompletionItem extends CompletionItem {
-  eslintCommand: ESLintCommand
+  public eslintCommand: ESLintCommand
 
-  constructor(
+  public constructor(
     label: string,
     kind: CompletionItemKind,
     eslintCommand: ESLintCommand,

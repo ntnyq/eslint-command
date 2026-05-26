@@ -16,6 +16,13 @@ import { escapeRegExp, getCommandMarkdown, logger } from '../utils'
 import type { DecorationMatch } from '../types'
 
 export function useAnnotations() {
+  const EXCLUDE_LANGUAGE_IDS = new Set(['log'])
+  const SUPPORTED_DOCUMENT_SCHEMES = new Set([
+    'file',
+    'untitled',
+    'vscode-notebook-cell',
+  ])
+
   const BuiltInDecoration = window.createTextEditorDecorationType({
     rangeBehavior: DecorationRangeBehavior.ClosedClosed,
     color: config.annotation?.color || DEFAULT_ANNOTATION.color,
@@ -40,6 +47,7 @@ export function useAnnotations() {
   // Cache the last text hash and language ID to avoid unnecessary updates
   const lastTextHash = ref<string>('')
   const lastLanguageId = ref<string>('')
+  const lastUnsupportedLanguage = ref<string>('')
 
   // Debounce timer for text content changes
   let debounceTimer: ReturnType<typeof setTimeout> | null = null
@@ -47,21 +55,50 @@ export function useAnnotations() {
 
   useEditorDecorations(editor, BuiltInDecoration, decorations)
 
+  function shouldSkipDecorations() {
+    if (!editor.value || !languageId.value) {
+      return true
+    }
+
+    const { scheme } = editor.value.document.uri
+    if (!SUPPORTED_DOCUMENT_SCHEMES.has(scheme)) {
+      return true
+    }
+
+    if (EXCLUDE_LANGUAGE_IDS.has(languageId.value.toLowerCase())) {
+      return true
+    }
+
+    return false
+  }
+
   function updateDecorations() {
-    if (!editor.value || !text.value || !languageId.value) {
+    if (!text.value || shouldSkipDecorations()) {
       decorations.value = []
       return
     }
 
-    if (!supportedLanguages.value.includes(languageId.value)) {
+    const currentLanguageId = languageId.value
+    if (!currentLanguageId) {
       decorations.value = []
-      logger.warn(`❗️ Language ${languageId.value} is not supported`)
       return
     }
+
+    if (!supportedLanguages.value.includes(currentLanguageId)) {
+      decorations.value = []
+
+      if (lastUnsupportedLanguage.value !== currentLanguageId) {
+        logger.warn(`❗️ Language ${currentLanguageId} is not supported`)
+        lastUnsupportedLanguage.value = currentLanguageId
+      }
+
+      return
+    }
+
+    lastUnsupportedLanguage.value = ''
 
     // Create a robust hash to detect if an update is really needed
     const currentTextHash = hash(text.value)
-    const currentLanguageId = languageId.value
 
     // If the text content and language haven't changed significantly, skip the update
     if (
@@ -79,7 +116,7 @@ export function useAnnotations() {
     eslintCommands.value.forEach(command => {
       const regexp = new RegExp(
         `${command.triggers.map(escapeRegExp).join('|')}`,
-        'g',
+        'gu',
       )
       let match: RegExpExecArray | null = null
 
@@ -140,6 +177,11 @@ export function useAnnotations() {
 
   watch([text, languageId], () => {
     // Use debounced update when text content or language ID changes
+    if (shouldSkipDecorations()) {
+      decorations.value = []
+      return
+    }
+
     debouncedUpdateDecorations()
   })
 
