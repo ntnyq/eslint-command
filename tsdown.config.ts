@@ -15,10 +15,6 @@ export default defineConfig({
   deps: {
     alwaysBundle: Object.keys(pkg.dependencies),
     neverBundle: ['vscode'],
-    onlyAllowBundle: [
-      'reactive-vscode',
-      '@reactive-vscode/reactivity',
-      'ohash',
-    ],
+    onlyBundle: ['reactive-vscode', '@reactive-vscode/reactivity', 'ohash'],
   },
 })
