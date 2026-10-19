@@ -6,7 +6,7 @@
   "type": "module",
   "version": "0.1.0",
   "private": true,
-  "packageManager": "pnpm@12.9.1",
+  "packageManager": "pnpm@12.12.1",
   "description": "VSCode support for eslint-plugin-command",
   "keywords": [
     "eslint-command"
@@ -61,9 +61,9 @@
     "husky": "^9.1.7",
     "nano-staged": "^1.0.2",
     "npm-run-all2": "^9.0.3",
-    "oxfmt": "^0.71.0",
-    "oxlint": "^1.86.0",
-    "tsdown": "^0.23.0",
+    "oxfmt": "^0.72.0",
+    "oxlint": "^1.87.0",
+    "tsdown": "^0.23.1",
     "typescript": "^7.0.2",
     "vscode-ext-gen": "^1.6.0"
   },
@@ -216,7 +216,7 @@
     "Other"
   ],
   "engines": {
-    "vscode": "^1.140.0"
+    "vscode": "^1.141.0"
   },
   "nano-staged": {
     "*.{js,ts,mjs,tsx}": "oxlint --fix",
